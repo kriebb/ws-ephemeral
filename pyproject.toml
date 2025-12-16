@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "ws-ephemeral"
-version = "2.1.0"
+version = "3.2.0"
 description = "request matching ephemeral port"
 authors = ["Dhruvin Shah <dhruvin3@gmail.com>"]
 
@@ -29,3 +29,14 @@ good-names = ["ws"]
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.semantic_release]
+version_toml = [
+    "pyproject.toml:tool.poetry.version"
+]
+major_on_zero = false
+branch = "main"
+upload_to_pypi = false
+upload_to_release = true
+build_command = "pip install poetry && poetry build"
+commit_message = "chore(release): {version} [skip ci]"
