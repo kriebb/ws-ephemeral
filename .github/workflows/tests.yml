@@ -40,4 +40,6 @@ jobs:
       - name: Run tests
         env:
           PYTHONPATH: ${{ github.workspace }}/src
+          WS_USERNAME: "dummy_user"
+          WS_PASSWORD: "dummy_password"
         run: poetry run pytest tests/
