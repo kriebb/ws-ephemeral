@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "ws-ephemeral"
-version = "1.0.2"
+version = "1.0.3"
 description = "request matching ephemeral port"
 authors = ["kriebb"]
 package-mode = false
