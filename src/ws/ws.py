@@ -7,6 +7,10 @@ allowing users to manage ephemeral ports and handle authentication.
 import logging
 import re
 import time
+import hashlib
+import base64
+import uuid
+import secrets
 from types import TracebackType
 from typing import TypedDict, final
 
@@ -231,35 +235,108 @@ class Windscribe:
         return new_csrf
 
     def login(self) -> None:
-        """Login to the Windscribe webpage.
+        """Login to the Windscribe webpage using the 2-stage auth flow.
 
         Authenticates the user using the provided username, password, and TOTP code (if available).
         Updates the CSRF token and saves the session cookies for future use.
         """
-        # NOTE: at the given moment try to resolve totp so that we don't have any delay.
-        totp = ""
-        if self.totp is not None:
-            totp = pyotp.TOTP(self.totp).now()
+        self.logger.debug("Starting 2-stage login flow...")
+        
+        # Stage 1: Get Auth Token
+        # -----------------------
+        auth_url = config.BASE_URL + "authtoken/login"
+        auth_data = {
+            "username": self.username,
+            "password": self.password
+        }
+        
+        resp = self.client.post(auth_url, data=auth_data)
+        self._dump_debug_info(resp, "login_stage1")
+        
+        if resp.status_code != 200:
+            self.logger.error("Stage 1 login failed. Status: %s", resp.status_code)
+            raise ValueError("Stage 1 login failed")
 
-        data = {
+        try:
+            resp_json = resp.json()
+        except Exception:
+            self.logger.error("Failed to parse Stage 1 response as JSON")
+            raise ValueError("Invalid Stage 1 response")
+
+        if resp_json.get("errorCode"):
+            error_msg = resp_json.get("errorMessage", "Unknown Error")
+            self.logger.error("Stage 1 API Error: %s", error_msg)
+            raise ValueError(f"Login API Error: {error_msg}")
+
+        data = resp_json.get("data", {})
+        token = data.get("token")
+        
+        if not token:
+            self.logger.error("No token returned in Stage 1")
+            raise ValueError("No token in Stage 1 response")
+
+        if data.get("captcha"):
+            self.logger.error("CAPTCHA required by Windscribe. Automated login impossible.")
+            raise ValueError("CAPTCHA required")
+
+        self.logger.debug("Stage 1 successful. Token received.")
+
+        # Stage 2: Prepare Crypto Payload
+        # -------------------------------
+        # logic reversed from: submitLoginWithToken in login page source
+        
+        salt = "my_mom_told_me_this_is_peak_engineering"
+        payload_str = token + salt
+        calculated_token_sig = hashlib.sha256(payload_str.encode("utf-8")).hexdigest()
+        
+        timestamp = int(time.time() * 1000) # JS Date.now() is ms
+        nonce = secrets.token_hex(8) # Approx random string
+        client_version = '1.0.0'
+        
+        # session_id: 16 random bytes -> hex string
+        session_id = secrets.token_hex(16)
+        
+        # request_id: complex generation
+        random1 = secrets.token_bytes(8)
+        random2 = secrets.token_bytes(8)
+        combined = random1 + random2
+        hash_bytes = hashlib.sha256(combined).digest()
+        # slice(0, 16) -> b64 -> remove non-alphanum -> substring(0, 24)
+        b64_hash = base64.b64encode(hash_bytes[:16]).decode('utf-8')
+        request_id = re.sub(r'[^a-zA-Z0-9]', '', b64_hash)[:24]
+
+        login_data = {
             "login": 1,
-            "upgrade": 0,
-            "csrf_time": self.csrf["csrf_time"],
-            "csrf_token": self.csrf["csrf_token"],
             "username": self.username,
             "password": self.password,
-            "code": totp,
+            "secure_token": token,
+            "secure_token_sig": calculated_token_sig,
+            "timestamp": timestamp,
+            "nonce": nonce,
+            "client_version": client_version,
+            "session_id": session_id,
+            "request_id": request_id,
+            "upgrade": 0
         }
-        resp = self.client.post(config.LOGIN_URL, data=data)
-        self._dump_debug_info(resp, "login_attempt")
+
+        # Add 2FA if present
+        if self.totp:
+            totp_code = pyotp.TOTP(self.totp).now()
+            login_data["code"] = totp_code
+
+        # Stage 3: Submit Login Form
+        # --------------------------
+        self.logger.debug("Submitting Stage 2 login form...")
+        resp = self.client.post(config.LOGIN_URL, data=login_data)
+        self._dump_debug_info(resp, "login_stage2")
         
         self.logger.debug("Login POST Status: %s", resp.status_code)
         self.logger.debug("Login POST Location: %s", resp.headers.get("Location", "None"))
         
-        # Check for obvious failure (still on login page)
-        # Note: Windscribe might return 200 OK even on failure, showing the form with an error.
+        # Check for success (redirect to myaccount or dashboard, or just not login page error)
         if "Log In" in resp.text and ("Invalid" in resp.text or "Error" in resp.text):
             self.logger.error("Login might have failed. Response content preview: %s", resp.text[:200])
+            raise ValueError("Stage 2 Login Failed")
 
         # save the cookie for the future use.
         save_cookie(self.client.cookies)
