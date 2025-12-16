@@ -69,6 +69,33 @@ class Windscribe:
 
         self.logger = logging.getLogger(self.__class__.__name__)
 
+    def _dump_debug_info(self, resp: httpx.Response, prefix: str) -> None:
+        """Dump request and response details to files for debugging."""
+        try:
+            dump_dir = config.WS_COOKIE.parent
+            # Create dir if it doesn't exist (though it should for the cookie)
+            dump_dir.mkdir(parents=True, exist_ok=True)
+            
+            timestamp = int(time.time())
+            base_name = f"{prefix}_{timestamp}"
+            
+            # Dump headers and metadata
+            with open(dump_dir / f"{base_name}_info.txt", "w", encoding="utf-8") as f:
+                f.write(f"Request URL: {resp.request.url}\n")
+                f.write(f"Request Method: {resp.request.method}\n")
+                f.write(f"Request Headers:\n{resp.request.headers}\n\n")
+                f.write(f"Response Status: {resp.status_code}\n")
+                f.write(f"Response URL: {resp.url}\n")
+                f.write(f"Response Headers:\n{resp.headers}\n")
+                
+            # Dump body
+            with open(dump_dir / f"{base_name}_body.html", "wb") as f:
+                f.write(resp.content)
+                
+            self.logger.info("Debug info dumped to %s/%s*", dump_dir, base_name)
+        except Exception as e:
+            self.logger.error("Failed to dump debug info: %s", e)
+
     def __enter__(self) -> "Windscribe":
         """Context manager entry.
 
@@ -174,6 +201,7 @@ class Windscribe:
             else:
                 # 3. Debug logging on failure (final attempt)
                 self.logger.debug("--- CSRF FAILURE DEBUG INFO ---")
+                self._dump_debug_info(resp, "csrf_fail")
                 self.logger.debug("Request URL: %s", resp.request.url)
                 self.logger.debug("Request Headers: %s", resp.request.headers)
                 self.logger.debug("Response Status: %s", resp.status_code)
@@ -210,6 +238,7 @@ class Windscribe:
             "code": totp,
         }
         resp = self.client.post(config.LOGIN_URL, data=data)
+        self._dump_debug_info(resp, "login_attempt")
         
         self.logger.debug("Login POST Status: %s", resp.status_code)
         self.logger.debug("Login POST Location: %s", resp.headers.get("Location", "None"))

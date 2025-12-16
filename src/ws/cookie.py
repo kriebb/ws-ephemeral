@@ -47,8 +47,9 @@ def save_cookie(cookie: Cookies) -> None:
         cookie (Cookies): A cookie object from httpx requests.
     """
     cookie_dict: dict[str, str] = {}
-    for k, v in cookie.items():
-        cookie_dict[k] = v
+    # Iterate over the underlying CookieJar to avoid CookieConflict errors
+    for c in cookie.jar:
+        cookie_dict[c.name] = c.value
 
     with open(config.WS_COOKIE, "wb") as ck:
         pickle.dump(cookie_dict, ck)
