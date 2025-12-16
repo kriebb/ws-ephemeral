@@ -82,6 +82,12 @@ docker compose up -d
 | QBIT_PRIVATE_TRACKER | get QBIT ready for private tracker by disabling dht, pex and lsd (true or false) |
 | ONESHOT              | Run and setup the code only one time so that job can be schedule externally      |
 | REQUEST_TIMEOUT      | configurable http api timeout for slow network/busy websites                     |
+| RE_CSRF_TIME         | Regex pattern for extracting CSRF time. Default: `csrf_time = (?P<ctime>\d+)`     |
+| RE_CSRF_TOKEN        | Regex pattern for extracting CSRF token (JS style). Default: `csrf_token = \'(?P<ctoken>\w+)\'` |
+| RE_META_CSRF_TOKEN   | Regex pattern for extracting CSRF token (meta tag style). Default: `<meta name="csrf-token" content="(?P<ctoken>[^"]+)"` |
+
+> [!tip] **Customizing CSRF Regex Patterns**
+> If Windscribe's website structure changes, leading to errors in token extraction, you can update the `RE_CSRF_TIME`, `RE_CSRF_TOKEN`, or `RE_META_CSRF_TOKEN` environment variables. To find the correct pattern, inspect the Windscribe login page HTML (e.g., by right-clicking and selecting "Inspect" or "View Page Source" in your browser) and search for elements related to "csrf_time" or "csrf-token". The `renew_csrf` function also logs the first 500 characters of the HTML response at debug level if a token isn't found, which can aid in debugging.
 
 > [!tip]
 > NOTE: for usage see [Docker Setup](#docker-setup) v2 setup guide.
