@@ -1,5 +1,10 @@
 # Changelog
 
+> [!NOTE]
+> This repository is a fork of [dhruvinsh/ws-ephemeral](https://github.com/dhruvinsh/ws-ephemeral).
+> Versioning has diverged from the original project. Versions 3.2.0 and older reflect the upstream history.
+> New versions (starting from ~1.0.0 or 1.3.0) are specific to this fork (`kriebb/ws-ephemeral`).
+
 All notable changes to this project will be documented in this file.
 
 ## [3.2.0] - 2024-08-26
