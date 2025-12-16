@@ -2,9 +2,9 @@ import pytest
 import httpx
 from unittest.mock import MagicMock, patch
 
-from src.ws.ws import Windscribe
-import src.config as config
-import src.ws.cookie as cookie_module
+from ws.ws import Windscribe
+import config
+import ws.cookie as cookie_module
 
 # Sample HTML for mocking a successful CSRF response after login
 MOCK_SUCCESSFUL_CSRF_HTML = """
@@ -47,8 +47,8 @@ def mock_windscribe_instance():
 
 @pytest.fixture(autouse=True)
 def mock_cookie_functions():
-    with patch('src.ws.cookie.load_cookie', return_value=None), \
-         patch('src.ws.cookie.save_cookie') as mock_save_cookie:
+    with patch('ws.cookie.load_cookie', return_value=None), \
+         patch('ws.cookie.save_cookie') as mock_save_cookie:
         yield mock_save_cookie
 
 def test_renew_csrf_auto_login_on_redirect(mock_windscribe_instance, mock_cookie_functions):
