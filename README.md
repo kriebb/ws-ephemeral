@@ -1,6 +1,7 @@
 # WS-EPHEMERAL
 
-> [!ATTENTION] Please use this tool responsibly. Excessive or inappropriate
+> [!CAUTION]
+> Please use this tool responsibly. Excessive or inappropriate
 > usage may result in temporary suspension of your account. Due to lack of
 > time I will try to revisit sometime in future but I strongly advice to let
 > it run at default pace, that is once every week. For new user cookie generation
