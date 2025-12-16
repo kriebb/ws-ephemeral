@@ -200,3 +200,103 @@ def test_renew_csrf_fails_after_retry(mock_windscribe_instance, mock_cookie_func
         # Check that the debug info for the final failure is called
         ws.logger.debug.assert_any_call("--- CSRF FAILURE DEBUG INFO ---")
         ws.logger.debug.assert_any_call("Response Content (first 1000 chars): %s", "<html><body>Still no csrf token</body></html>")
+
+def test_login_success_2_stage(mock_windscribe_instance, mock_cookie_functions):
+    ws = mock_windscribe_instance
+
+    # Mock Stage 1 Response (/authtoken/login)
+    mock_stage1_resp = MagicMock(spec=httpx.Response)
+    mock_stage1_resp.status_code = 200
+    mock_stage1_resp.json.return_value = {
+        "data": {
+            "token": "mock_session_token_xyz",
+            "captcha": False
+        }
+    }
+    mock_stage1_resp.request.url = config.BASE_URL + "authtoken/login"
+    mock_stage1_resp.request.method = "POST"
+    mock_stage1_resp.request.headers = httpx.Headers()
+    mock_stage1_resp.headers = httpx.Headers()
+    mock_stage1_resp.content = b'{"data": ...}'
+
+    # Mock Stage 2 Response (/login)
+    mock_stage2_resp = MagicMock(spec=httpx.Response)
+    mock_stage2_resp.status_code = 200
+    # Response usually redirects or shows dashboard, NOT the login form with error
+    mock_stage2_resp.text = "<html>Dashboard</html>" 
+    mock_stage2_resp.request.url = config.LOGIN_URL
+    mock_stage2_resp.request.method = "POST"
+    mock_stage2_resp.request.headers = httpx.Headers()
+    mock_stage2_resp.headers = httpx.Headers()
+    mock_stage2_resp.content = b"<html>Dashboard</html>"
+
+    ws.client.post.side_effect = [mock_stage1_resp, mock_stage2_resp]
+
+    # Perform Login
+    ws.login()
+
+    # Verifications
+    assert ws.client.post.call_count == 2
+    
+    # Check Stage 1 Call
+    call1_args = ws.client.post.call_args_list[0]
+    assert call1_args[0][0].endswith("authtoken/login")
+    assert call1_args[1]['data']['username'] == "test_user"
+
+    # Check Stage 2 Call
+    call2_args = ws.client.post.call_args_list[1]
+    assert call2_args[0][0].endswith("login")
+    data2 = call2_args[1]['data']
+    
+    # Verify crypto payload fields are present
+    assert data2['secure_token'] == "mock_session_token_xyz"
+    assert 'secure_token_sig' in data2
+    assert 'request_id' in data2
+    assert 'session_id' in data2
+    assert 'nonce' in data2
+    assert 'timestamp' in data2
+    assert data2['client_version'] == '1.0.0'
+
+def test_login_failure_stage1_error(mock_windscribe_instance, mock_cookie_functions):
+    ws = mock_windscribe_instance
+
+    # Mock Stage 1 Error Response
+    mock_stage1_resp = MagicMock(spec=httpx.Response)
+    mock_stage1_resp.status_code = 200
+    mock_stage1_resp.json.return_value = {
+        "errorCode": 401,
+        "errorMessage": "Invalid credentials"
+    }
+    mock_stage1_resp.request.url = config.BASE_URL + "authtoken/login"
+    mock_stage1_resp.request.method = "POST"
+    mock_stage1_resp.request.headers = httpx.Headers()
+    mock_stage1_resp.headers = httpx.Headers()
+    mock_stage1_resp.content = b'{"errorCode": 401}'
+
+    ws.client.post.return_value = mock_stage1_resp
+
+    with pytest.raises(ValueError, match="Login API Error: Invalid credentials"):
+        ws.login()
+
+def test_login_failure_captcha_required(mock_windscribe_instance, mock_cookie_functions):
+    ws = mock_windscribe_instance
+
+    # Mock Stage 1 Response with CAPTCHA
+    mock_stage1_resp = MagicMock(spec=httpx.Response)
+    mock_stage1_resp.status_code = 200
+    mock_stage1_resp.json.return_value = {
+        "data": {
+            "token": "some_token",
+            "captcha": True
+        }
+    }
+    mock_stage1_resp.request.url = config.BASE_URL + "authtoken/login"
+    mock_stage1_resp.request.method = "POST"
+    mock_stage1_resp.request.headers = httpx.Headers()
+    mock_stage1_resp.headers = httpx.Headers()
+    mock_stage1_resp.content = b'...'
+
+    ws.client.post.return_value = mock_stage1_resp
+
+    with pytest.raises(ValueError, match="CAPTCHA required"):
+        ws.login()
