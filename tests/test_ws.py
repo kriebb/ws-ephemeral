@@ -56,19 +56,19 @@ def test_renew_csrf_auto_login_on_redirect(mock_windscribe_instance, mock_cookie
 
     # Mock responses for client.get (MYACT_URL) and client.post (LOGIN_URL)
     # Scenario:
-    # 1. Initial call to MYACT_URL gets 302 redirect to login.
+    # 1. Initial call to MYACT_URL gets redirected to login page (follow_redirects=True).
     # 2. ws.login() is called.
     # 3. Second call to MYACT_URL (after login) gets successful CSRF HTML.
 
     # Mock the sequence of responses from httpx.Client.get
-    # First call: 302 redirect
-    mock_response_302 = MagicMock(spec=httpx.Response)
-    mock_response_302.status_code = 302
-    mock_response_302.headers = httpx.Headers({'Location': config.LOGIN_URL})
-    mock_response_302.text = MOCK_LOGIN_PAGE_HTML
-    mock_response_302.request = MagicMock(spec=httpx.Request)
-    mock_response_302.request.url = config.MYACT_URL
-    mock_response_302.request.headers = httpx.Headers()
+    # First call: 200 OK but on login page (simulating followed redirect)
+    mock_response_redirected = MagicMock(spec=httpx.Response)
+    mock_response_redirected.status_code = 200
+    mock_response_redirected.headers = httpx.Headers()
+    mock_response_redirected.text = MOCK_LOGIN_PAGE_HTML
+    mock_response_redirected.request = MagicMock(spec=httpx.Request)
+    mock_response_redirected.url = httpx.URL(config.LOGIN_URL + "?auth_required")
+    mock_response_redirected.request.headers = httpx.Headers()
 
 
     # Second call: successful CSRF page
@@ -77,13 +77,13 @@ def test_renew_csrf_auto_login_on_redirect(mock_windscribe_instance, mock_cookie
     mock_response_success.headers = httpx.Headers()
     mock_response_success.text = MOCK_SUCCESSFUL_CSRF_HTML
     mock_response_success.request = MagicMock(spec=httpx.Request)
-    mock_response_success.request.url = config.MYACT_URL
+    mock_response_success.url = httpx.URL(config.MYACT_URL)
     mock_response_success.request.headers = httpx.Headers()
 
 
     # Configure the mock client to return these responses in sequence
     ws.client.get.side_effect = [
-        mock_response_302,
+        mock_response_redirected,
         mock_response_success,
     ]
 
@@ -103,7 +103,7 @@ def test_renew_csrf_auto_login_on_redirect(mock_windscribe_instance, mock_cookie
         assert ws.client.get.call_count == 2 # MYACT_URL should be requested twice
         assert csrf["csrf_time"] == 123456789
         assert csrf["csrf_token"] == "SUCCESS_TOKEN"
-        ws.logger.warning.assert_called_with("Session expired (redirect detected), re-logging in...")
+        ws.logger.warning.assert_called_with("Session expired (landed on login page), re-logging in...")
         ws.logger.debug.assert_called_with("csrf renewed successfully.")
 
 def test_renew_csrf_auto_login_on_token_not_found(mock_windscribe_instance, mock_cookie_functions):
@@ -120,7 +120,7 @@ def test_renew_csrf_auto_login_on_token_not_found(mock_windscribe_instance, mock
     mock_response_missing_token.headers = httpx.Headers()
     mock_response_missing_token.text = "<html><body>No csrf token here</body></html>"
     mock_response_missing_token.request = MagicMock(spec=httpx.Request)
-    mock_response_missing_token.request.url = config.MYACT_URL
+    mock_response_missing_token.url = httpx.URL(config.MYACT_URL)
     mock_response_missing_token.request.headers = httpx.Headers()
 
 
@@ -130,7 +130,7 @@ def test_renew_csrf_auto_login_on_token_not_found(mock_windscribe_instance, mock
     mock_response_success.headers = httpx.Headers()
     mock_response_success.text = MOCK_SUCCESSFUL_CSRF_HTML
     mock_response_success.request = MagicMock(spec=httpx.Request)
-    mock_response_success.request.url = config.MYACT_URL
+    mock_response_success.url = httpx.URL(config.MYACT_URL)
     mock_response_success.request.headers = httpx.Headers()
 
 
@@ -158,17 +158,17 @@ def test_renew_csrf_fails_after_retry(mock_windscribe_instance, mock_cookie_func
     ws = mock_windscribe_instance
 
     # Scenario:
-    # 1. Initial call: 302 redirect
+    # 1. Initial call: Redirect to login (simulated as 200 OK on login URL)
     # 2. ws.login() is called.
     # 3. Second call: 200 but still no token. Should raise ValueError.
 
-    mock_response_302 = MagicMock(spec=httpx.Response)
-    mock_response_302.status_code = 302
-    mock_response_302.headers = httpx.Headers({'Location': config.LOGIN_URL})
-    mock_response_302.text = MOCK_LOGIN_PAGE_HTML
-    mock_response_302.request = MagicMock(spec=httpx.Request)
-    mock_response_302.request.url = config.MYACT_URL
-    mock_response_302.request.headers = httpx.Headers()
+    mock_response_redirected = MagicMock(spec=httpx.Response)
+    mock_response_redirected.status_code = 200
+    mock_response_redirected.headers = httpx.Headers()
+    mock_response_redirected.text = MOCK_LOGIN_PAGE_HTML
+    mock_response_redirected.request = MagicMock(spec=httpx.Request)
+    mock_response_redirected.url = httpx.URL(config.LOGIN_URL + "?auth_required")
+    mock_response_redirected.request.headers = httpx.Headers()
 
 
     mock_response_missing_token_after_retry = MagicMock(spec=httpx.Response)
@@ -176,12 +176,12 @@ def test_renew_csrf_fails_after_retry(mock_windscribe_instance, mock_cookie_func
     mock_response_missing_token_after_retry.headers = httpx.Headers()
     mock_response_missing_token_after_retry.text = "<html><body>Still no csrf token</body></html>"
     mock_response_missing_token_after_retry.request = MagicMock(spec=httpx.Request)
-    mock_response_missing_token_after_retry.request.url = config.MYACT_URL
+    mock_response_missing_token_after_retry.url = httpx.URL(config.MYACT_URL)
     mock_response_missing_token_after_retry.request.headers = httpx.Headers()
 
 
     ws.client.get.side_effect = [
-        mock_response_302,
+        mock_response_redirected,
         mock_response_missing_token_after_retry,
     ]
 
@@ -196,7 +196,7 @@ def test_renew_csrf_fails_after_retry(mock_windscribe_instance, mock_cookie_func
 
         mock_login.assert_called_once()
         assert ws.client.get.call_count == 2
-        ws.logger.warning.assert_called_with("Session expired (redirect detected), re-logging in...")
+        ws.logger.warning.assert_called_with("Session expired (landed on login page), re-logging in...")
         # Check that the debug info for the final failure is called
         ws.logger.debug.assert_any_call("--- CSRF FAILURE DEBUG INFO ---")
         ws.logger.debug.assert_any_call("Response Content (first 1000 chars): %s", "<html><body>Still no csrf token</body></html>")
