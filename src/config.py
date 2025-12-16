@@ -45,6 +45,12 @@ if not all([WS_USERNAME, WS_PASSWORD]):
 USERNAME_ID: str = "username"
 PASSWORD_ID: str = "password"
 
+# Regex configuration for CSRF extraction
+# Allows updating patterns without rebuilding container
+RE_CSRF_TIME: str = os.getenv("RE_CSRF_TIME", r"csrf_time = (?P<ctime>\d+)")
+RE_CSRF_TOKEN: str = os.getenv("RE_CSRF_TOKEN", r"csrf_token = \'(?P<ctoken>\w+)\'")
+RE_META_CSRF_TOKEN: str = os.getenv("RE_META_CSRF_TOKEN", r'<meta name="csrf-token" content="(?P<ctoken>[^"]+)"')
+
 
 # fmt: off
 # some qbit config

@@ -6,6 +6,7 @@ allowing users to manage ephemeral ports and handle authentication.
 
 import logging
 import re
+import time
 from types import TracebackType
 from typing import TypedDict, final
 
@@ -134,17 +135,30 @@ class Windscribe:
             ValueError: If CSRF time or token is not found.
         """
         resp = self.client.get(config.MYACT_URL)
-        csrf_time = re.search(r"csrf_time = (?P<ctime>\d+)", resp.text)
-        if csrf_time is None:
-            raise ValueError("Can not work further, csrf_time not found, exited.")
 
-        csrf_token = re.search(r"csrf_token = \'(?P<ctoken>\w+)\'", resp.text)
-        if csrf_token is None:
-            raise ValueError("Can not work further, csrf_token not found, exited.")
+        # 1. Fallback for csrf_time
+        csrf_time_match = re.search(config.RE_CSRF_TIME, resp.text)
+        if csrf_time_match:
+            csrf_time = int(csrf_time_match.group("ctime"))
+        else:
+            csrf_time = int(time.time())
+
+        # 2. Smart search for csrf_token (regex fallback to meta tag)
+        csrf_token_match = re.search(config.RE_CSRF_TOKEN, resp.text)
+        if csrf_token_match:
+            csrf_token = csrf_token_match.group("ctoken")
+        else:
+            meta_match = re.search(config.RE_META_CSRF_TOKEN, resp.text)
+            if meta_match:
+                csrf_token = meta_match.group("ctoken")
+            else:
+                # 3. Debug logging on failure
+                self.logger.debug("HTML content dump (first 500 chars): %s", resp.text[:500])
+                raise ValueError("Can not work further, csrf_token not found, exited.")
 
         new_csrf: Csrf = {
-            "csrf_time": int(csrf_time.groupdict()["ctime"]),
-            "csrf_token": csrf_token.groupdict()["ctoken"],
+            "csrf_time": csrf_time,
+            "csrf_token": csrf_token,
         }
 
         self.logger.debug("csrf renewed successfully.")
