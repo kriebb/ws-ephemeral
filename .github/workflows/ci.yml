@@ -1,0 +1,113 @@
+name: CI/CD
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  packages: write
+  issues: write
+  pull-requests: write
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          
+      - name: Install Poetry
+        uses: snok/install-poetry@v1
+        with:
+          virtualenvs-create: true
+          virtualenvs-in-project: true
+          installer-parallel: true
+          
+      - name: Load cached venv
+        id: cached-poetry-dependencies
+        uses: actions/cache@v3
+        with:
+          path: .venv
+          key: venv-v2-${{ runner.os }}-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}
+          
+      - name: Regenerate lock file
+        run: poetry lock
+
+      - name: Install dependencies
+        run: poetry install --no-interaction --with dev
+        
+      - name: Run tests
+        env:
+          PYTHONPATH: ${{ github.workspace }}/src
+          WS_USERNAME: "dummy_user"
+          WS_PASSWORD: "dummy_password"
+        run: poetry run pytest tests/
+
+  release:
+    name: Release
+    needs: test
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    outputs:
+      released: ${{ steps.release.outputs.released }}
+      version: ${{ steps.release.outputs.version }}
+      tag: ${{ steps.release.outputs.tag }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      - name: Python Semantic Release
+        id: release
+        uses: python-semantic-release/python-semantic-release@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SEMANTIC_RELEASE_BUILD_COMMAND: "echo 'Skipping build for non-package'"
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
+  build-docker:
+    name: Build Docker
+    needs: release
+    # Run even if release didn't happen (to build 'main' tag), unless test failed (default behavior).
+    # If release job was skipped (e.g. PR), this still runs? No, 'needs' implies dependency success.
+    # If release job says 'no release', it success.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Docker Meta
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ghcr.io/${{ github.repository }}
+          tags: |
+            # Release tags
+            type=raw,value=${{ needs.release.outputs.version }},enable=${{ needs.release.outputs.released == 'true' }}
+            type=raw,value=latest,enable=${{ needs.release.outputs.released == 'true' }}
+            # Branch tag (e.g. main)
+            type=ref,event=branch
+
+      - name: Build and Push
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
