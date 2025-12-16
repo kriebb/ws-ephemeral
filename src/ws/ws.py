@@ -172,6 +172,7 @@ class Windscribe:
         """Renew CSRF token.
 
         After login, Windscribe issues a new CSRF token within JavaScript.
+        This function handles token extraction and session renewal.
 
         Args:
             retry (bool): Whether to retry login if CSRF renewal fails.
