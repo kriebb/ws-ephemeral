@@ -209,7 +209,15 @@ class Windscribe:
             "password": self.password,
             "code": totp,
         }
-        _ = self.client.post(config.LOGIN_URL, data=data)
+        resp = self.client.post(config.LOGIN_URL, data=data)
+        
+        self.logger.debug("Login POST Status: %s", resp.status_code)
+        self.logger.debug("Login POST Location: %s", resp.headers.get("Location", "None"))
+        
+        # Check for obvious failure (still on login page)
+        # Note: Windscribe might return 200 OK even on failure, showing the form with an error.
+        if "Log In" in resp.text and ("Invalid" in resp.text or "Error" in resp.text):
+            self.logger.error("Login might have failed. Response content preview: %s", resp.text[:200])
 
         # save the cookie for the future use.
         save_cookie(self.client.cookies)
