@@ -153,10 +153,12 @@ class Windscribe:
                 csrf_token = meta_match.group("ctoken")
             else:
                 # 3. Debug logging on failure
-                self.logger.debug(
-                    "Response Status: %s, Headers: %s", resp.status_code, resp.headers
-                )
-                self.logger.debug("HTML content dump (first 500 chars): %s", resp.text[:500])
+                self.logger.debug("--- CSRF FAILURE DEBUG INFO ---")
+                self.logger.debug("Request URL: %s", resp.request.url)
+                self.logger.debug("Request Headers: %s", resp.request.headers)
+                self.logger.debug("Response Status: %s", resp.status_code)
+                self.logger.debug("Response Headers: %s", resp.headers)
+                self.logger.debug("Response Content (first 1000 chars): %s", resp.text[:1000])
                 raise ValueError("Can not work further, csrf_token not found, exited.")
 
         new_csrf: Csrf = {
