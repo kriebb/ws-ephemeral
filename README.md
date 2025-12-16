@@ -65,6 +65,18 @@ Docker compose file is provided for example, make some adjustment and run as,
 docker compose up -d
 ```
 
+#### Health Check
+
+The container includes a built-in health check script (`healthcheck.py`) that verifies the presence of the session cookie and connectivity to qBittorrent. You can enable it in your `docker-compose.yaml` as follows:
+
+```yaml
+    healthcheck:
+      test: ["CMD", "python3", "healthcheck.py"]
+      interval: 1h
+      timeout: 10s
+      retries: 3
+```
+
 ### Environment Variables
 
 | Variable             | Comment                                                                          |
