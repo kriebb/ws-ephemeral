@@ -1,0 +1,9 @@
+Request URL: https://windscribe.com/authtoken/login
+Request Method: POST
+Request Headers:
+Headers({'host': 'windscribe.com', 'accept': '*/*', 'accept-encoding': 'gzip, deflate', 'connection': 'keep-alive', 'origin': 'https://windscribe.com/', 'referer': 'https://windscribe.com/login', 'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36', 'cookie': 'i_can_has_cookie=1; ref=https://windscribe.com/; auth_redir=REDACTED; auth_redir=REDACTED', 'content-length': '51', 'content-type': 'application/x-www-form-urlencoded'})
+
+Response Status: 200
+Response URL: https://windscribe.com/authtoken/login
+Response Headers:
+Headers({'date': 'Tue, 16 Dec 2025 13:42:33 GMT', 'content-type': 'text/html; charset=UTF-8', 'transfer-encoding': 'chunked', 'connection': 'keep-alive', 'vary': 'accept-encoding', 'strict-transport-security': 'max-age=16000000; includeSubDomains; preload;', 'x-frame-options': 'SAMEORIGIN', 'cf-cache-status': 'DYNAMIC', 'content-encoding': 'gzip', 'server': 'cloudflare', 'cf-ray': 'REDACTED'})

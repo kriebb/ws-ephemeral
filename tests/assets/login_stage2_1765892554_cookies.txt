@@ -1,0 +1,21 @@
+Current Client Cookies:
+Name: i_can_has_cookie
+Value: 1
+Domain: 
+Path: /
+--------------------
+Name: ref
+Value: https://windscribe.com/
+Domain: 
+Path: /
+--------------------
+Name: auth_redir
+Value: REDACTED
+Domain: 
+Path: /
+--------------------
+Name: ws_session_auth_hash
+Value: REDACTED
+Domain: .windscribe.com
+Path: /
+--------------------

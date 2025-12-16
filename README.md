@@ -22,7 +22,7 @@ Windscribe VPN and need to open the ports.
 
 Only ghcr.io is currently used for the Docker registry:
 
-- ghcr.io/dhruvinsh/ws-ephemeral
+- ghcr.io/kriebb/ws-ephemeral
 
 ### Tags
 
@@ -54,7 +54,7 @@ docker run \
 -e WS_USERNAME=username \
 -e WS_TOPT=totp_token \
 -v /path/to/local/data:/cookie \
-ghcr.io/dhruvinsh/ws-ephemeral:latest
+ghcr.io/kriebb/ws-ephemeral:latest
 ```
 
 #### Docker-compose

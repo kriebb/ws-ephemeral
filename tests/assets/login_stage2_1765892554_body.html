@@ -1,0 +1,2769 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+    // CRITICAL: Apply dark mode BEFORE page renders to prevent flash
+    (function() {
+        const savedTheme = localStorage.getItem('windscribe-theme');
+        const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const theme = savedTheme || (prefersDark ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+    })();
+    </script>
+        <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>My Account - Windscribe</title>
+    <meta name="description" content="Windscribe is a desktop application and browser extension that work together to block ads and trackers, restore access to blocked content and help you safeguard your privacy online.">
+    <meta name="keywords" content="windscribe, vpn, free vpn, virtual private network, privacy, security, tunnel, anonymous"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://static.windscribe.com/css/normalize.css?01-10-17">
+    <link rel="stylesheet" href="https://static.windscribe.com/v2/css/upgrade.css?2025-12-15" />
+    <link rel="stylesheet" href="https://static.windscribe.com/v2/css/generator.css?2025-12-15" />
+    <link rel="stylesheet" href="https://static.windscribe.com/v2/css/main.css?2025-12-15" />
+    <link rel="stylesheet" href="https://static.windscribe.com/v2/css/language.css?2025-12-15" />
+    <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="128x128" href="/favicon-128x128.png">
+    <link rel="icon" type="image/png" sizes="256x256" href="/favicon-256x256.png">
+
+    <script src="https://static.windscribe.com/js/vendor/modernizr-2.8.3.min.js"></script>
+    <script src="https://static.windscribe.com/js/vendor/jquery-1.11.3.min.js"></script>
+    <script defer src="https://static.windscribe.com/js/vendor/clipboard.js"></script>
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@windscribecom" />
+    <meta name="twitter:creator" content="@yegor" />
+    <meta name="twitter:label1" content="Platform" />
+    <meta name="twitter:data1" content="Privacy Solution" />
+    <meta name="twitter:label2" content="Cool Factor" />
+    <meta name="twitter:data2" content="Alpha One" />
+    <meta property="twitter:image" content="https://windscribe.com/og_image.png" />
+
+    <meta property="og:title" content="My Account - Windscribe" />
+    <meta property="og:site_name" content="Windscribe" />
+    <meta property="og:url" content="https://windscribe.com/" />
+    <meta property="og:description" content="Windscribe is a set of privacy tools that are built for humans, by humans. Connect to VPN servers in over 130 locations (some of them are free), block malware and ads, and stay more private online." />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:image" content="https://windscribe.com/og_image.png" />
+
+    
+    <link rel="alternate" hreflang="en" href="https://windscribe.com/myaccount" />
+    <link rel="alternate" hreflang="zh" href="https://chn.windscribe.com/myaccount" />
+    <link rel="alternate" hreflang="de" href="https://deu.windscribe.com/myaccount" />
+    <link rel="alternate" hreflang="ar" href="https://egy.windscribe.com/myaccount" />
+    <link rel="alternate" hreflang="es" href="https://esp.windscribe.com/myaccount" />
+    <link rel="alternate" hreflang="fr" href="https://fra.windscribe.com/myaccount" />
+    <link rel="alternate" hreflang="hi" href="https://ind.windscribe.com/myaccount" />
+    <link rel="alternate" hreflang="nl" href="https://nld.windscribe.com/myaccount" />
+    <link rel="alternate" hreflang="pt" href="https://prt.windscribe.com/myaccount" />
+    <link rel="alternate" hreflang="ru" href="https://rus.windscribe.com/myaccount" />
+    <link rel="alternate" hreflang="tr" href="https://tur.windscribe.com/myaccount" />
+    <link rel="alternate" hreflang="jv" href="https://idn.windscribe.com/myaccount" />
+    <link rel="alternate" hreflang="vi" href="https://vnm.windscribe.com/myaccount" />
+    <link rel="alternate" hreflang="ko" href="https://kor.windscribe.com/myaccount" />
+    <link rel="alternate" hreflang="it" href="https://ita.windscribe.com/myaccount" />
+    <link rel="alternate" hreflang="sv" href="https://swe.windscribe.com/myaccount" />
+    <link rel="alternate" hreflang="th" href="https://tha.windscribe.com/myaccount" />
+    <link rel="alternate" hreflang="ja" href="https://jpn.windscribe.com/myaccount" />
+
+    <link rel="canonical" href="https://windscribe.com/myaccount" />
+
+    
+                <link rel="stylesheet" href="https://static.windscribe.com/v2/css/teams.css?2025-12-15">
+                <link rel="stylesheet" href="https://static.windscribe.com/v2/css/windscribe.css?2025-12-15">
+                <link rel="stylesheet" href="https://static.windscribe.com/v2/css/robert.css?2025-12-15">
+                <link rel="stylesheet" href="https://static.windscribe.com/v2/css/staticips_pf.css?2025-12-15">
+                <link rel="stylesheet" href="https://static.windscribe.com/v2/css/configgenerator.css?2025-12-15">
+    
+    
+    </head>
+
+<body>
+<!-- SITE CONTENT -->
+<div class="wrapper " id="body_wrap">
+    <div class="header" id="main_header">
+    <a href="/" id="header_logo" title="Windscribe Logo"></a>
+    <div class="header-menu">
+        <ul>
+                                                <!-- Simplified My Account Navigation -->
+                    <li><a href="/download" class="nav-link-myaccount">Download Apps</a></li>
+                    <li><a href="javascript:void(0)" onclick="document.getElementById('garry-toggle').click(); return false;" class="nav-link-myaccount">Get Help</a></li>
+                    <li><a href="/myaccount/logout" class="nav-link-myaccount">Logout</a></li>
+                            
+
+            <li class="language-selector">
+                <span class="mobile-selector">Language</span>
+                <a href="#" class="language-selector-toggle">
+                    <i class="cflag ENG"></i>
+                </a>
+                <ul class="language-dropdown-menu">
+                    <li>
+                        <a href="https://egy.windscribe.com/myaccount">
+                            <i class="cflag EGY"></i>
+                            <span>عرب</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://chn.windscribe.com/myaccount">
+                            <i class="cflag CHN"></i>
+                            <span>中文</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://nld.windscribe.com/myaccount">
+                            <i class="cflag NLD"></i>
+                            <span>Nederlands</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://windscribe.com/myaccount">
+                            <i class="cflag ENG"></i>
+                            <span>English</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://fra.windscribe.com/myaccount">
+                            <i class="cflag FRA"></i>
+                            <span>Français</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://deu.windscribe.com/myaccount">
+                            <i class="cflag DEU"></i>
+                            <span>Deutsche</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://ind.windscribe.com/myaccount">
+                            <i class="cflag IND"></i>
+                            <span>हिंदी</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://ita.windscribe.com/myaccount">
+                            <i class="cflag ITA"></i>
+                            <span>Italiano</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://prt.windscribe.com/myaccount">
+                            <i class="cflag PRT"></i>
+                            <span>Português</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://rus.windscribe.com/myaccount">
+                            <i class="cflag RUS"></i>
+                            <span>Русский</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://swe.windscribe.com/myaccount">
+                            <i class="cflag SWE"></i>
+                            <span>Svenska</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://esp.windscribe.com/myaccount">
+                            <i class="cflag ESP"></i>
+                            <span>Español</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://tur.windscribe.com/myaccount">
+                            <i class="cflag TUR"></i>
+                            <span>Türk</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://jpn.windscribe.com/myaccount">
+                            <i class="cflag JPN"></i>
+                            <span>日本語</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://idn.windscribe.com/myaccount">
+                            <i class="cflag IDN"></i>
+                            <span>Indonesia</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://kor.windscribe.com/myaccount">
+                            <i class="cflag KOR"></i>
+                            <span>한국어</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://vnm.windscribe.com/myaccount">
+                            <i class="cflag VNM"></i>
+                            <span>Tiếng Việt</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://tha.windscribe.com/myaccount">
+                            <i class="cflag THA"></i>
+                            <span>ไทย</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div><!--header-menu-->
+</div><!--header-->    <link rel="prefetch" href="https://static.windscribe.com/v2/img/menu-account-active@2x.png">
+<link rel="prefetch" href="https://static.windscribe.com/v2/img/menu-robert-active@2x.png">
+<link rel="prefetch" href="https://static.windscribe.com/v2/img/menu-ports-active@2x.png">
+<link rel="prefetch" href="https://static.windscribe.com/v2/img/menu-scribeforce-active@2x.png">
+
+
+<div class="white-section myaccount">
+    
+    <!-- Combined Navigation Bar -->
+    <div class="account-nav-title-combined">
+        <div class="nav-tabs-container">
+            <ul class="nav-tabs">
+                <li class="active" id="my_account_class">
+                    <a href="javascript:void(0)" onclick="show_my_account_page();" id="menu-account" class="nav-tab">
+                        <div class="nav-content">
+                            <i class="fas fa-user nav-icon"></i>
+                            <span class="nav-text">My Account</span>
+                            <span class="nav-desc">Usage & Billing</span>
+                        </div>
+                    </a>
+                </li>
+                <li id="robert_class">
+                    <a href="javascript:void(0)" onclick="show_robert_page(); if(typeof _paq != 'undefined'){ _paq.push(['trackEvent', 'MyAccount', 'Navigation', 'robert-tab']); }" id="menu-robert" class="nav-tab">
+                        <div class="nav-content">
+                            <i class="fas fa-shield nav-icon"></i>
+                            <span class="nav-text">R.O.B.E.R.T.</span>
+                            <span class="nav-desc">DNS/IP Blocker</span>
+                        </div>
+                    </a>
+                </li>
+                <li id="sip_class">
+                    <a href="javascript:void(0)" onclick="show_ports_page(); if(typeof _paq != 'undefined'){ _paq.push(['trackEvent', 'MyAccount', 'Navigation', 'staticip-tab']); }" id="menu-ports" class="nav-tab">
+                        <div class="nav-content">
+                            <i class="fas fa-globe nav-icon"></i>
+                            <span class="nav-text">Port Forwarding</span>
+                            <span class="nav-desc">External Access</span>
+                        </div>
+                    </a>
+                </li>
+                                    <li id="mas_class">
+                        <a href="javascript:void(0)" onclick="show_scribeforce_page(); if(typeof _paq != 'undefined'){ _paq.push(['trackEvent', 'MyAccount', 'Navigation', 'scribeforce-tab']); }" id="menu-scribeforce" class="nav-tab">
+                            <div class="nav-content">
+                                <i class="fas fa-users nav-icon"></i>
+                                <span class="nav-text">ScribeForce</span>
+                                <span class="nav-desc">Team Management</span>
+                            </div>
+                        </a>
+                    </li>
+                                <li id="config_gen_class">
+                    <a href="javascript:void(0)" onclick="show_config_generator_page(); if(typeof _paq != 'undefined'){ _paq.push(['trackEvent', 'MyAccount', 'Navigation', 'configgen-tab']); }" id="menu-config-generator" class="nav-tab">
+                        <div class="nav-content">
+                            <i class="fas fa-cog nav-icon"></i>
+                            <span class="nav-text">Config Generator</span>
+                            <span class="nav-desc">Manual Setup</span>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Floating Content Sections -->
+    <div class="account-content-floating">
+            <div id="myaccountpage">
+            
+                        
+                        
+            <!-- ACCOUNT SETUP GUIDE -->
+            <div class="account-setup-guide" id="account-setup-guide">
+                <div class="account-setup-header">
+                    <div class="account-setup-title-group">
+                        <div class="account-setup-title-row">
+                            <div class="account-setup-title">Account Setup</div>
+                            <div class="account-setup-progress">
+                                <span class="account-setup-progress-text">3/4</span>
+                            </div>
+                            <div class="account-setup-subtitle">Complete these steps to have the best experience with Windscribe</div>
+                        </div>
+                    </div>
+                                        <button class="account-setup-close" onclick="if(typeof _paq != 'undefined'){ _paq.push(['trackEvent', 'MyAccount', 'Onboarding', 'setup-guide-close']); } closeSetupGuide(); return false;" aria-label="Close">×</button>
+                                    </div>
+                
+                <div class="account-setup-items">
+                    <div class="account-setup-item completed"
+                         >
+                        <div class="account-setup-item-icon-combined">
+                            <i class="fas fa-download"></i>
+                        </div>
+                        <div class="account-setup-item-text">
+                            <div class="account-setup-item-title">1. Install Apps</div>
+                            <div class="account-setup-item-desc">Download and install Windscribe on your devices</div>
+                        </div>
+                    </div>
+
+                    <div class="account-setup-item completed "
+                         >
+                        <div class="account-setup-item-icon-combined">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="account-setup-item-text">
+                            <div class="account-setup-item-title">2. Add Email</div>
+                            <div class="account-setup-item-desc">
+                                                                    Enable password recovery and account notifications
+                                                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="account-setup-item "
+                         onclick="if(typeof _paq != 'undefined'){ _paq.push(['trackEvent', 'MyAccount', 'Onboarding', 'setup-2fa']); } $('.cd-popup.mfa-manage-modal').addClass('is-visible'); return false;">
+                        <div class="account-setup-item-icon-combined">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="account-setup-item-text">
+                            <div class="account-setup-item-title">3. Enable MFA</div>
+                            <div class="account-setup-item-desc">Protect against unauthorized account access</div>
+                        </div>
+                    </div>
+                    
+                    <div class="account-setup-item completed"
+                         >
+                        <div class="account-setup-item-icon-combined">
+                            <i class="fas fa-circle-up"></i>
+                        </div>
+                        <div class="account-setup-item-text">
+                            <div class="account-setup-item-title">4. Upgrade to Pro</div>
+                            <div class="account-setup-item-desc">Unlock unlimited data and premium features</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+                        
+                        
+            <!-- GENERAL SECTION -->
+            <div class="ma_section_container">
+                <div class="ma_section_header">
+                    <h2><i class="fas fa-info-circle"></i> General</h2>
+                </div>
+                
+                <div class="ma_section_content">
+                    <div class="ma_item">
+                        <h2>Username</h2>
+                        <div class="ma_content">
+                            <div class="ma_value">kriebb</div>
+                                                        <div class="ma_actions">
+                                <a href="#" class="edit_item" onclick="if(typeof _paq != 'undefined'){ _paq.push(['trackEvent', 'MyAccount', 'Profile', 'edit-username-modal']); } $('.cd-popup.username-edit-modal').addClass('is-visible'); return false;"><i class="fas fa-edit"></i> Edit</a>
+                            </div>
+                                                    </div>
+                    </div>
+
+                    <div class="ma_item">
+                        <h2>Member Since</h2>
+                        <div class="ma_content">
+                            <div class="ma_value">September 12th 2024</div>
+                        </div>
+                    </div>
+
+                                        <div class="ma_item">
+                        <h2>Email</h2>
+                        <div class="ma_content">
+                            <div class="ma_value">
+                                                                <div class="ma_value">
+                                    <div class="email-info">
+                                        <span id="email_display" class="email-address"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b2c5dbdcd6c1d1c0dbd0d79c80828086f2d9c0dbc1c6ddd49ce0dbd7d0d0d7dec19cd0d7">[email&#160;protected]</a> </span>
+                                        <button type="button"
+                                                class="email-status-btn status-confirmed"
+                                                data-tooltip="Email Confirmed"
+                                                aria-label="Email Confirmed">
+                                            <i class="fas fa-check-circle"></i>
+                                        </button>
+                                    </div>
+                                   
+                                </div>
+                                
+                            </div>
+                            <div class="ma_actions">
+                                                                <a href="#" class="edit_item" onclick="if(typeof _paq != 'undefined'){ _paq.push(['trackEvent', 'MyAccount', 'Profile', 'edit-email-modal']); } $('.cd-popup.email-edit-modal').addClass('is-visible'); return false;"><i class="fas fa-envelope"></i> Edit</a>
+                            </div>
+                        </div>
+                        <div class="ma_item_form" id="new_email_form">
+                            <input type="text" placeholder="New email address"
+                                   id="new_email_input"/>
+                            <input type="password" placeholder="Windscribe Password"
+                                   id="new_email_pass_input"/>
+                            <button class="btn btn-primary"
+                                    id="email_change_submit">Change</button>
+                            <button class="btn btn-primary ma_form_cancel_btn" id="email_change_cancel"
+                                    data-id="new_email_form">Cancel</button>
+                        </div>
+                        <div class="ma_edit_overlay" id="email_overlay">
+                            <span></span> <i class="ma_edit_close" data-id="email_overlay" data-form="new_email_form"></i>
+                        </div>
+                    </div>
+                    
+                    
+                    <div class="ma_item">
+                        <h2>Unlock Streaming</h2>
+                        <div class="ma_content">
+                            <div class="ma_value ma_value_descriptive">Enable streaming content access and VPN unblocking features</div>
+                            <div class="ma_actions">
+                                <div class="toggle-switch" id="streaming_toggle" onclick="if(typeof _paq != 'undefined'){ _paq.push(['trackEvent', 'MyAccount', 'Settings', 'streaming-unlock']); } toggleProxyOptOut(); return false;">
+                                    <div class="toggle-slider enabled">
+                                        <div class="toggle-handle"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ma_item">
+                        <h2><i class="fas fa-calendar-week"></i> Favorite Weekday</h2>
+                        <div class="ma_content">
+                            <div class="ma_value ma_value_descriptive">Choose your favorite day of the week (for science)</div>
+                            <div class="ma_actions">
+                                <select id="fav_weekday_select" onchange="updateFavoriteWeekday(this.value); return false;" class="ma_weekday_select">
+                                    <option value="" >Undecided</option>
+                                    <option value="1" selected>Monday</option>
+                                    <option value="2" >Tuesday</option>
+                                    <option value="3" >Wednesday</option>
+                                    <option value="4" >Thursday</option>
+                                    <option value="5" >Friday</option>
+                                    <option value="6" >Saturday</option>
+                                    <option value="7" >Sunday</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ma_item">
+                        <h2>Appearance</h2>
+                        <div class="ma_content">
+                            <div class="ma_value ma_value_descriptive" id="theme-description">Switch between dark and savage mode</div>
+                            <div class="ma_actions">
+                                <a href="javascript:void(0)" onclick="toggleDarkMode(); return false;" class="theme-toggle-action" id="theme-toggle-btn"><i class="fas fa-sun" id="theme-icon"></i> <span id="theme-label">Light Mode</span></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ma_item">
+                        <h2><i class="fas fa-headset"></i> Get Help</h2>
+                        <div class="ma_content">
+                            <div class="ma_value ma_value_descriptive">Garry can help with almost anything</div>
+                            <div class="ma_actions">
+                                <a href="javascript:void(0)" onclick="document.getElementById('garry-toggle').click(); return false;"><i class="fas fa-comments"></i> Chat With Garry</a>
+                            </div>
+                        </div>
+                    </div>
+
+                   
+
+                </div>
+            </div>
+
+            <!-- BILLING SECTION -->
+            <div class="ma_section_container">
+                <div class="ma_section_header">
+                    <h2><i class="fas fa-credit-card"></i> Billing</h2>
+                </div>
+                
+                <div class="ma_section_content">
+                    <div class="ma_item">
+                        <h2>Plan Name</h2>
+                        <div class="ma_content">
+                                                            <div class="ma_value">
+                                    <strong>Pro</strong>
+                                </div>
+                                                    </div>
+                        <div class="ma_item_form" id="voucher_form">
+                            <input type="text" placeholder="Voucher Code" id="voucher_input"/>
+                            <button class="btn btn-primary"
+                                    id="voucher_submit">Claim</button>
+                            <button class="btn btn-primary ma_form_cancel_btn" id="voucher_cancel"
+                                    data-id="voucher_form">Cancel</button>
+                        </div>
+                        <div class="ma_edit_overlay" id="voucher_overlay">
+                            <span></span> <i class="ma_edit_close" data-id="voucher_overlay" data-form="voucher_form"></i>
+                        </div>
+                    </div>
+
+                                            
+                                                    <div class="ma_item">
+                                <h2>Expiry Date <span class="tooltip-icon tooltip tooltip-top" data-tooltip="When your account will downgrade back to free"><i class="fas fa-info-circle"></i></span></h2>
+                                <div class="ma_content">
+                                    <div class="ma_value">November 26th 2026</div>
+                                </div>
+                            </div>
+                                                
+                                                    <div class="ma_item">
+                                <h2>Rebill Date <span class="tooltip-icon tooltip tooltip-top" data-tooltip="When you will be charged again"><i class="fas fa-info-circle"></i></span></h2>
+                                <div class="ma_content">
+                                    <div class="ma_value">November 26th 2026</div>
+                                </div>
+                            </div>
+                                                
+
+                        <div class="ma_item">
+                            <h2>Subscription</h2>
+                            <div class="ma_content">
+                                                                    <div class="ma_value">Active</div>
+                                    <div class="ma_actions">
+                                                                                <a href="/cancel/subscription" id="cancel_sub_btn" class="secondary" onclick="if(typeof _paq != 'undefined'){ _paq.push(['trackEvent', 'MyAccount', 'Billing', 'cancel-subscription']); }"><i class="fas fa-times"></i> Cancel Subscription</a>
+                                    </div>
+                                                            </div>
+                        </div>
+                    
+                                            <div class="ma_item ma_item_expandable" onclick="if(typeof _paq != 'undefined'){ _paq.push(['trackEvent', 'MyAccount', 'Billing', 'payment-history-expand']); } $('#payments_toggle').click();">
+                            <h2>Payment History</h2>
+                            <div class="ma_content">
+                                <div class="ma_value">View billing history</div>
+                                <div class="ma_actions">
+                                    <i class="ma_drop_icon" id="payments_toggle"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ma_expandable_content" id="payment_history_container" style="display: none;">
+                            <table class="table-history" id="payment_history">
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Method</th>
+                                    <th>Total</th>
+                                    <th>Status</th>
+                                    <th width="150">Receipt</th>
+                                </tr>
+                                                                    <tr>
+                                        <td>26-11-2025</td>
+                                        <td>googleplay</td>
+                                        <td>
+                                            $29.00</td>
+                                        <td>completed</td>
+                                        <td><a href="/myaccount/receipt?tx_id=19754185"
+                                               target="_blank" onclick="if(typeof _paq != 'undefined'){ _paq.push(['trackEvent', 'MyAccount', 'Billing', 'view-receipt']); }">View Receipt</a></td>
+                                    </tr>
+                                                            </table>
+                        </div>
+                                    </div>
+            </div>
+
+            
+            
+            <!-- DATA / USAGE SECTION -->
+            <div class="ma_section_container">
+                <div class="ma_section_header">
+                    <h2><i class="fas fa-chart-bar"></i> Data / Usage</h2>
+                </div>
+                
+                <div class="ma_section_content">
+                    <div class="ma_item ma_item_usage">
+                        <h2>Data Usage</h2>
+                        <div class="ma_content">
+                            <div class="ma_usage_container">
+                                                                <div class="ma_usage_text">
+                                    <span class="ma_usage_used">
+                                        16.74 GB                                    </span>
+                                    <span class="ma_usage_separator">/</span>
+                                    <span class="ma_usage_limit">
+                                        <i class="fas fa-infinity"></i>                                    </span>
+                                </div>
+                                <div class="ma_usage_bar_container">
+                                    <div class="ma_usage_bar_track unlimited">
+                                        <div class="ma_usage_bar_fill" style="width: 100%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ma_item">
+                        <h2>Next Reset</h2>
+                        <div class="ma_content">
+                            <div class="ma_value">January 12th 2026</div>
+                        </div>
+                    </div>
+
+                    
+                    <div class="ma_item">
+                        <h2>+1GB Referral Link</h2>
+                        <div class="ma_content">
+                            <div class="ma_value">
+                                <a href="https://windscribe.com/yo/5fnc38m7"
+                                   id="ma_friend_url">
+                                    https://windscribe.com/yo/5fnc38m7                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+                        <!-- 2FA WARNING BANNER -->
+            <div class="twofa-warning-banner" id="twofa-warning-banner" style="display: none;">
+                <div class="twofa-warning-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                        <path d="M7 11V7a5 5 0 0110 0v4"/>
+                    </svg>
+                </div>
+                <div class="twofa-warning-content">
+                    <div class="twofa-warning-title">Enable Two-Factor Authentication</div>
+                    <div class="twofa-warning-text">Add an extra layer of security to prevent unauthorized access</div>
+                </div>
+                <div class="twofa-warning-actions">
+                    <button class="twofa-warning-btn twofa-warning-btn-primary" onclick="if(typeof _paq != 'undefined'){ _paq.push(['trackEvent', 'MyAccount', 'Security', 'warning-add-2fa']); } $('.cd-popup.mfa-manage-modal').addClass('is-visible'); return false;">Add 2FA</button>
+                    <button class="twofa-warning-btn twofa-warning-btn-dismiss" onclick="if(typeof _paq != 'undefined'){ _paq.push(['trackEvent', 'MyAccount', 'Security', 'warning-dismiss-2fa']); } close2FAWarning(); return false;">Keep My Account Insecure</button>
+                </div>
+            </div>
+            
+            <!-- SECURITY SECTION -->
+            <div class="ma_section_container">
+                <div class="ma_section_header">
+                    <h2><i class="fas fa-lock"></i> Security</h2>
+                </div>
+                
+                <div class="ma_section_content">
+                                        <div class="ma_item">
+                        <h2>Password</h2>
+                        <div class="ma_content">
+                            <div class="ma_value">********</div>
+                            <div class="ma_actions">
+                                <a href="#" class="edit_item" onclick="if(typeof _paq != 'undefined'){ _paq.push(['trackEvent', 'MyAccount', 'Security', 'edit-password-modal']); } $('.cd-popup.password-edit-modal').addClass('is-visible'); return false;"><i class="fas fa-edit"></i> Edit</a>
+                            </div>
+                        </div>
+                        <div class="ma_item_form" id="new_pass_form">
+                            <input type="password" placeholder="Old Password"
+                                   id="old_pass_input"/>
+                            <input type="password" placeholder="New Password"
+                                   id="new_pass_input"/>
+                            <input type="password" placeholder="Confirm Password"
+                                   id="confirm_pass_input"/>
+                            <div class="ma_form_actions">
+                                <button class="btn btn-primary"
+                                        id="pass_change_submit">Change</button>
+                                <button class="btn btn-primary ma_form_cancel_btn" id="pass_change_cancel"
+                                        data-id="new_pass_form">Cancel</button>
+                                <p>All existing application sessions will be logged out.</p>
+                            </div>
+                        </div>
+                        <div class="ma_edit_overlay" id="password_overlay">
+                            <span></span> <i class="ma_edit_close" data-id="password_overlay" data-form="new_pass_form"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="ma_item">
+                        <h2>Two-Factor Auth</h2>
+                        <div class="ma_content">
+                            <div class="ma_value">
+                                                                    <strong style="color: #ff9800;">Disabled</strong>
+                                                            </div>
+                            <div class="ma_actions">
+                                <a href="#" onclick="if(typeof _paq != 'undefined'){ _paq.push(['trackEvent', 'MyAccount', 'Security', '2fa-enable-modal']); } $('.cd-popup.mfa-manage-modal').addClass('is-visible'); return false;"><i class="fas fa-shield-alt"></i> Manage 2FA</a>
+                            </div>
+                        </div>
+                        <div class="ma_item_form" id="twofa_form">
+                            <div id="two_fa_actual_form">
+                                <input type="password" placeholder="Your Password" id="password_input" style="width: 227px !important; text-align: center;"/>
+                                                                    <button class="btn btn-primary" id="enable_2fa_submit">Enable 2FA</button>
+                                                                 <button class="btn btn-primary ma_form_cancel_btn" id="password_cancel"  data-id="twofa_form">Cancel</button>
+                            </div>
+                            <div class="ma_edit_overlay" id="twofa_overlay">
+                                <span></span>
+                                <div id="verify_2fa" style="display: none">
+                                    <div id="verify_instructions">Scan this code with any TOTP supporting 2FA application. </div>
+                                    <div id="verify_qr_code"></div>
+                                    <div id="verify_secret">Recovery Code: <strong></strong></div>
+                                    <div id="verify_code">
+                                        <input type="text" placeholder="2FA Code" id="code_input" style="width: 140px !important; text-align: center;" />
+                                    </div>
+                                    <button class="btn btn-primary" id="verify_2fa_submit">Verify and Enable</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ma_item">
+                        <h2>Sessions</h2>
+                        <div class="ma_content">
+                        <div class="ma_value ma_value_descriptive">Manage your login sessions</div>
+                            <div class="ma_actions">
+                                <a href="#" onclick="$('.cd-popup.sessions-manage-modal').addClass('is-visible'); return false;"><i class="fas fa-cog"></i> Manage Sessions</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ma_item">
+                        <h2>VPN Credentials</h2>
+                        <div class="ma_content">
+                            <div class="ma_value ma_value_descriptive">Manage your VPN credentials</div>
+                            <div class="ma_actions">
+                                <a href="#" onclick="$('.cd-popup.credentials-manage-modal').addClass('is-visible'); return false;"><i class="fas fa-key"></i> Manage Credentials</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ma_item ma_item_danger">
+                        <h2>Delete Account</h2>
+                        <div class="ma_content">
+                        <div class="ma_value ma_value_descriptive">You will never guess what will happen next...</div>
+                            <div class="ma_actions">
+                                <a href="#" onclick="if(typeof _paq != 'undefined'){ _paq.push(['trackEvent', 'MyAccount', 'Security', 'delete-account-modal']); } $('.cd-popup.delete-account-modal').addClass('is-visible'); return false;" id="delete_account_btn" class="danger"><i class="fas fa-trash"></i> Give Up On Privacy</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div><!--myaccountpage-->
+            <div id="robertpage" style="display:none;">
+        </div>
+
+        <div id="portforwardpage" style="display:none;">
+            <div id="sip_wrapper">
+                <div id="gear_spinner"></div>
+            </div>
+        </div><!--portforwardpage-->
+
+        <div id="scribeforcepage" style="display:none;">
+            <div id="mas_wrapper">
+                <div id="gear_spinner"></div>
+            </div>
+        </div><!--scribeforcepage-->
+
+        <div id="configgeneratorpage" style="display:none;">
+            <div id="config_wrapper">
+                <div id="gear_spinner"></div>
+            </div>
+        </div><!--configgeneratorpage-->
+        
+    </div><!--account-content-floating-->
+</div>
+<div id="preload">
+    <img src="https://static.windscribe.com/img/question_icon@2x.png" width="1" height="1"
+         alt="Image 01"/>
+</div>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    // Add body class for header integration when My Account page loads
+    document.body.classList.add('myaccount-body');
+
+    // Navigation description update function - no longer needed
+    function updateNavDescription(description) {
+        // Description now shown in nav tabs directly
+    }
+
+    // ===================================================================
+    // WARNING BANNER FUNCTIONS - Must be global for onclick attributes
+    // ===================================================================
+    
+    window.close2FAWarning = function() {
+        $('#twofa-warning-banner').fadeOut(200, function() {
+            $(this).remove();
+        });
+        localStorage.setItem('windscribe-hide-2fa-warning', 'true');
+    };
+    
+    window.closeEmailWarning = function() {
+        $('#email-warning-banner').fadeOut(200, function() {
+            $(this).remove();
+        });
+        localStorage.setItem('windscribe-hide-email-warning', 'true');
+    };
+    
+    window.closeSecurityWarning = function() {
+        $('#security-critical-banner').fadeOut(200, function() {
+            $(this).remove();
+        });
+        localStorage.setItem('windscribe-hide-security-warning', 'true');
+    };
+    
+    window.closeSetupGuide = function() {
+        $('#account-setup-guide').fadeOut(200, function() {
+            $(this).remove();
+        });
+        localStorage.setItem('windscribe-hide-setup-guide', 'true');
+    };
+
+    // Terrible code starts below
+    $(document).ready(function () {
+
+        window.localStorage.setItem('ha', (Date.now()/1000).toString() );
+
+        /* Drop down menu - removed since we're using sidebar */
+
+        
+        csrf_time = 1765892554;
+        csrf_token = 'fc27863c4b67e69a1cf15b101f22b51b1e87e5d2';
+        billing_plan = 100;
+        sl_page = 1;
+
+        // Remove "Undecided" option if user already has a preference set
+                $('#fav_weekday_select option[value=""]').remove();
+                voucher_pending = 0;
+
+
+        // Mobile dropdown removed - tabs now work across all screen sizes
+
+        toggleProxyOptOut = function(){
+            var proxy_optout;
+            if($('#streaming_toggle .toggle-slider').hasClass('enabled')){
+                proxy_optout = 1;
+            } else {
+                proxy_optout = 0;
+            }
+            $.post('/myaccount/proxyoptout', {
+                'proxy_optout':proxy_optout,
+                'ctoken': csrf_token,
+                'ctime': csrf_time
+            }, function(res){
+                data = $.parseJSON(res);
+                if(data.success === 1){
+                    if(data.proxy_optout === 1){
+                        $('#streaming_toggle .toggle-slider').removeClass('enabled');
+                    } else {
+                        $('#streaming_toggle .toggle-slider').addClass('enabled');
+                    }
+                }else if(data.message){
+                    alert(data.message);
+                }
+            })
+        };
+
+        show_my_account_page = function () {
+            window.location.hash = '';
+            $('#myaccountpage').show();
+            $('#robertpage').hide();
+            $('#portforwardpage').hide();
+            $('#scribeforcepage').hide();
+            $('#configgeneratorpage').hide();
+            $('#affiliateprogrampage').hide();
+            $('#securelinkspage').hide();
+            $('#my_account_class').attr("class", "active");
+            $('#robert_class').attr("class", "");
+            $('#affiliate_program_class').attr("class", "");
+            $('#secure_links_class').attr("class", "");
+            $('#sip_class').attr("class", "");
+            $('#mas_class').attr("class", "");
+            $('#config_gen_class').attr("class", "");
+            
+            // No description update needed
+        };
+        show_affiliate_program_page = function () {
+            if (window.location.hash != '#affiliate') {
+                window.location.hash = '#affiliate';
+            }
+            $('#myaccountpage').hide();
+            $('#robertpage').hide();
+            $('#portforwardpage').hide();
+            $('#scribeforcepage').hide();
+            $('#configgeneratorpage').hide();
+            $('#affiliateprogrampage').show();
+            $('#securelinkspage').hide();
+            $('#my_account_class').attr("class", "");
+            $('#robert_class').attr("class", "");
+            $('#affiliate_program_class').attr("class", "active");
+            $('#secure_links_class').attr("class", "");
+            $('#sip_class').attr("class", "");
+            $('#mas_class').attr("class", "");
+            $('#config_gen_class').attr("class", "");
+        };
+        show_robert_page = function () {
+
+            if (window.location.hash !== '#robertrules' && window.location.hash !== '#robert') {
+                window.location.hash = '#robert';
+            }
+
+            $('#robertpage').html('<div id="gear_spinner"></div>');
+            $.get('/robert/load', function (res) {
+                $('#robertpage').html(res);
+            });
+
+            $('#myaccountpage').hide();
+            $('#portforwardpage').hide();
+            $('#robertpage').show();
+            $('#scribeforcepage').hide();
+            $('#configgeneratorpage').hide();
+            $('#affiliateprogrampage').hide();
+            $('#securelinkspage').hide();
+            $('#my_account_class').attr("class", "");
+            $('#robert_class').attr("class", "active");
+            $('#affiliate_program_class').attr("class", "");
+            $('#secure_links_class').attr("class", "");
+            $('#sip_class').attr("class", "");
+            $('#mas_class').attr("class", "");
+            $('#config_gen_class').attr("class", "");
+            
+            // No description update needed
+        };
+        show_ports_page = function () {
+            if (window.location.hash !== '#portforwards' && window.location.hash !== '#porteph') {
+                window.location.hash = '#portforwards';
+            }
+            $('#sip_wrapper').html('<div id="gear_spinner"></div>');
+            $.get('/staticips/load', function (res) {
+                $('#sip_wrapper').html(res);
+                // Show the consolidated main tab
+                if(typeof staticIPS !== 'undefined') {
+                    staticIPS.openPortForwards();
+                }
+            });
+
+            $('#myaccountpage').hide();
+            $('#robertpage').hide();
+            $('#portforwardpage').show();
+            $('#scribeforcepage').hide();
+            $('#configgeneratorpage').hide();
+            $('#affiliateprogrampage').hide();
+            $('#securelinkspage').hide();
+            $('#my_account_class').attr("class", "");
+            $('#robert_class').attr("class", "");
+            $('#sip_class').attr("class", "active");
+            $('#affiliate_program_class').attr("class", "");
+            $('#secure_links_class').attr("class", "");
+            $('#mas_class').attr("class", "");
+            $('#config_gen_class').attr("class", "");
+
+            // No description update needed
+        }
+        show_scribeforce_page = function () {
+            if (window.location.hash != '#scribeforce') {
+                window.location.hash = '#scribeforce';
+            }
+            $('#mas_wrapper').html('<div id="gear_spinner"></div>');
+            $.get('/scribeforce/load', function (res) {
+                $('#mas_wrapper').html(res);
+            });
+
+            $('#myaccountpage').hide();
+            $('#robertpage').hide();
+            $('#portforwardpage').hide();
+            $('#scribeforcepage').show();
+            $('#configgeneratorpage').hide();
+            $('#affiliateprogrampage').hide();
+            $('#securelinkspage').hide();
+            $('#my_account_class').attr("class", "");
+            $('#robert_class').attr("class", "");
+            $('#sip_class').attr("class", "");
+            $('#mas_class').attr("class", "active");
+            $('#config_gen_class').attr("class", "");
+            $('#affiliate_program_class').attr("class", "");
+            $('#secure_links_class').attr("class", "");
+
+            // No description update needed
+        }
+        show_config_generator_page = function (protocol) {
+            var hash = protocol ? '#configgenerator-' + protocol : '#configgenerator';
+            if (window.location.hash != hash) {
+                window.location.hash = hash;
+            }
+            $('#config_wrapper').html('<div id="gear_spinner"></div>');
+            $.get('/configgenerator/load', function (res) {
+                $('#config_wrapper').html(res);
+
+                // Initialize the config generator after content loads
+                if (typeof initializeConfigGenerator === 'function') {
+                    initializeConfigGenerator(protocol);
+                }
+            });
+
+            $('#myaccountpage').hide();
+            $('#robertpage').hide();
+            $('#portforwardpage').hide();
+            $('#scribeforcepage').hide();
+            $('#configgeneratorpage').show();
+            $('#affiliateprogrampage').hide();
+            $('#securelinkspage').hide();
+            $('#my_account_class').attr("class", "");
+            $('#robert_class').attr("class", "");
+            $('#sip_class').attr("class", "");
+            $('#mas_class').attr("class", "");
+            $('#config_gen_class').attr("class", "active");
+            $('#affiliate_program_class').attr("class", "");
+            $('#secure_links_class').attr("class", "");
+
+            // No description update needed
+        }
+        get_secure_links = function (page) {
+            $('#sl_wrapper').html('<div id="gear_spinner"></div>');
+            $.get('/myaccount/getsecurelinks?page=' + page, function (res) {
+                $('#sl_wrapper').html(res);
+                if ($('.sl_item').length > 0) {
+                    $('#sl_nav').show();
+                }
+                if ($('#no_slinks').length == 1) {
+                    $('#sl_nav').hide();
+                }
+            });
+        };
+        show_secure_links_page = function () {
+            if ($('.sl_item').length == 0) {
+                get_secure_links(1);
+            }
+            if (window.location.hash != '#securelinks') {
+                window.location.hash = '#securelinks';
+            }
+            $('#myaccountpage').hide();
+            $('#robertpage').hide();
+            $('#portforwardpage').hide();
+            $('#affiliateprogrampage').hide();
+            $('#securelinkspage').show();
+            $('#scribeforcepage').hide();
+            $('#configgeneratorpage').hide();
+            $('#my_account_class').attr("class", "");
+            $('#robert_class').attr("class", "");
+            $('#affiliate_program_class').attr("class", "");
+            $('#secure_links_class').attr("class", "active");
+            $('#mas_class').attr("class", "");
+            $('#config_gen_class').attr("class", "");
+            $('#sip_class').attr("class", "");
+        };
+        sl_next_page = function () {
+            sl_page++;
+            get_secure_links(sl_page);
+            $('#sl_prev_page').show();
+            $('#cur_page').html('Page ' + sl_page);
+        };
+        sl_prev_page = function () {
+            if (sl_page == 1) {
+                return false;
+            }
+            sl_page--;
+            if (sl_page == 1) {
+                $('#sl_prev_page').hide();
+            }
+            get_secure_links(sl_page);
+            $('#cur_page').html('Page ' + sl_page);
+        };
+        if (window.location.hash == '#securelinks') {
+            show_secure_links_page();
+        } else if (window.location.hash == '#affiliate') {
+            show_affiliate_program_page();
+        } else if (window.location.hash == '#robert') {
+            show_robert_page();
+        } else if (window.location.hash == '#robertrules') {
+            show_robert_page();
+        } else if (window.location.hash == '#portforwards') {
+            show_ports_page();
+        } else if (window.location.hash == '#porteph') {
+            show_ports_page();
+        } else if (window.location.hash == '#scribeforce') {
+            show_scribeforce_page();
+        } else if (window.location.hash == '#configgenerator' ||
+                   window.location.hash == '#configgenerator-openvpn' ||
+                   window.location.hash == '#configgenerator-ikev2' ||
+                   window.location.hash == '#configgenerator-wireguard') {
+            var protocol = null;
+            if (window.location.hash == '#configgenerator-openvpn') {
+                protocol = 'openvpn';
+            } else if (window.location.hash == '#configgenerator-ikev2') {
+                protocol = 'ikev2';
+            } else if (window.location.hash == '#configgenerator-wireguard') {
+                protocol = 'wireguard';
+            }
+            show_config_generator_page(protocol);
+        }
+        var clipboard = new Clipboard('.sl_copy_btn');
+        clipboard.on('success', function (e) {
+            $(e.trigger).attr('data-tooltip', 'Link copied').addClass('tooltip-open');
+            setTimeout(function () {
+                $(e.trigger).removeClass('tooltip-open').removeAttr('data-tooltip');
+            }, 1500);
+        });
+        $('.edit_item').click(function () {
+            $('#' + $(this).attr('data-id')).toggle();
+            return false;
+        });
+        $('#payments_toggle').click(function () {
+            $(this).toggleClass('active');
+            $('#payment_history_container').slideToggle();
+            return false;
+        });
+        $('#payouts_toggle').click(function () {
+            $(this).toggleClass('active');
+            $('#payout_history').slideToggle();
+            return false;
+        });
+        var get_detailed_stats = function () {
+            var page = $('#stats_page').val();
+            var tag = $('#stats_tags').val();
+            $('#detailed_stats').html('<div id="gear_spinner"></div>');
+            $.post('/myaccount/detailedstats', {
+                'page': page,
+                'tag': tag,
+                'ctoken': csrf_token,
+                'ctime': csrf_time
+            }, function (res) {
+                $('#detailed_stats').html(res);
+            });
+        };
+        $(document).on('change', '#stats_page', function () {
+            get_detailed_stats();
+        });
+        $(document).on('change', '#stats_tags', function () {
+            get_detailed_stats();
+        });
+        $(document).on('click', '.breakdown_link', function () {
+            var id = $(this).attr('data-id');
+            $('#' + id).slideToggle();
+        });
+        $('#stats_toggle').click(function () {
+            if (!$(this).hasClass('active')) {
+                get_detailed_stats();
+            }
+            $(this).toggleClass('active');
+            $('#detailed_stats').slideToggle();
+            return false;
+        });
+        $('.ma_form_cancel_btn').click(function () {
+            $('#' + $(this).attr('data-id')).hide();
+            return false;
+        });
+        $('#ma_withdraw_method').change(function () {
+            if ($('#ma_withdraw_method').val() == "paypal") {
+                $('#ma_withdraw_address').attr("placeholder", "Associated Email Address");
+            } else if ($('#ma_withdraw_method').val() == "bitcoin") {
+                $('#ma_withdraw_address').attr("placeholder", "Bitcoin Wallet Address");
+            }
+        });
+        $('.ma_edit_close').click(function () {
+            elem = $('#' + $(this).attr('data-id'));
+            if (!elem.hasClass('error')) {
+                $('#' + $(this).attr('data-form')).hide();
+            }
+            elem.fadeOut('fast', function () {
+                elem.removeClass('error');
+            });
+            return false;
+        });
+        email_edit = false;
+        $('#email_change_submit').click(function () {
+            if (!email_edit) {
+                email_edit = true;
+                new_email = $('#new_email_input').val();
+                password = $('#new_email_pass_input').val();
+                $.post('/myaccount/editemail', {
+                    'email': new_email,
+                    'password': password,
+                    'ctoken': csrf_token,
+                    'ctime': csrf_time
+                }, function (res) {
+                    data = $.parseJSON(res);
+                    $('#email_overlay').removeClass('small');
+                    if (data.success == 1) {
+                        $('#email_overlay span').html('Great, now check your Inbox (or Spam folder) for a confirmation email.');
+                        $('#email_overlay').show();
+                        $('#email_display').html(new_email);
+                        $('#new_email_input').val('');
+                        $('#new_email_pass_input').val('');
+                    } else {
+                        $('#email_overlay span').html(data.message);
+                        $('#email_overlay').addClass('error').show();
+                    }
+                    email_edit = false;
+                });
+            }
+            return false;
+        });
+        $('#email_unsubscribe').click(function () {
+            if (billing_plan < 0) {
+                echeck = confirm("WARNING: Are you sure? Your account will be permanently downgraded to 2GB/month and you will not be able to reset your password!");
+            } else {
+                echeck = confirm("WARNING: Are you sure? You will not be able to reset your password or be notified of account changes and updates!");
+            }
+            if (echeck) {
+                $.post('/myaccount/deleteemail', {
+                    'ctoken': csrf_token,
+                    'ctime': csrf_time
+                }, function (res) {
+                    data = $.parseJSON(res);
+                    $('#email_overlay').addClass('small');
+                    if (data.success == 1) {
+                        $('#email_overlay span').html('Your email has been removed');
+                        $('#email_display').html('N/A');
+                        $('#email_unsubscribe').hide();
+                        $('#email_overlay').show();
+                    } else {
+                        $('#email_overlay span').html(data.message);
+                        $('#email_overlay').addClass('error').show();
+                    }
+                });
+            }
+            return false;
+        });
+
+        $('#delete_sessions').click(function () {
+            echeck = confirm("This will log out all clients associated with your account, and log you out from the website. Are you sure?");
+            if (echeck) {
+                $.post('/myaccount/deletesessions', {
+                    'ctoken': csrf_token,
+                    'ctime': csrf_time
+                }, function (res) {
+                    data = $.parseJSON(res);
+                    if (data.success == 1) {
+                        $('#security_overlay span').html('Sessions deleted. Please login again.');
+                        $('#security_overlay').show();
+                    } else {
+                        $('#security_overlay span').html(data.message);
+                        $('#security_overlay').addClass('error').show();
+                    }
+                });
+            }
+            return false;
+        });
+
+        $('#delete_credentials').click(function () {
+            echeck = confirm("This will delete all generated VPN credentials and all static IP devices and port forwards (if you have any). Are you sure?");
+            if (echeck) {
+                $.post('/myaccount/deletecredentials', {
+                    'ctoken': csrf_token,
+                    'ctime': csrf_time
+                }, function (res) {
+                    data = $.parseJSON(res);
+                    if (data.success == 1) {
+                        $('#security_overlay span').html('Credentials deleted.');
+                        $('#security_overlay').show();
+                    } else {
+                        $('#security_overlay span').html(data.message);
+                        $('#security_overlay').addClass('error').show();
+                    }
+                });
+            }
+            return false;
+        });
+
+        $('#resend_confirmation').click(function () {
+            var $btn = $(this);
+            
+            // Prevent multiple clicks
+            if ($btn.hasClass('disabled') || $btn.data('sending')) {
+                return false;
+            }
+            
+            // Mark as sending and disable
+            $btn.data('sending', true);
+            $btn.text('Sending...').addClass('disabled');
+
+            $.post('/myaccount/resendconfirmation', {
+                'ctoken': csrf_token,
+                'ctime': csrf_time
+            }, function (res) {
+                data = $.parseJSON(res);
+                if (data.success == 1) {
+                    // Show success message with clean styling
+                    showResendSuccess();
+                    // Keep button permanently disabled after successful resend
+                    $btn.html('<i class="fas fa-check"></i> Email Sent').addClass('disabled');
+                    $btn.data('sending', false);
+                } else {
+                    // Show error message and re-enable button after 3 seconds
+                    showResendError(data.message);
+                    setTimeout(function() {
+                        $btn.html('<i class="fas fa-envelope"></i> Resend Email').removeClass('disabled');
+                        $btn.data('sending', false);
+                    }, 3000);
+                }
+            }).fail(function() {
+                // On network error, re-enable button after 3 seconds
+                setTimeout(function() {
+                    $btn.html('<i class="fas fa-envelope"></i> Resend Email').removeClass('disabled');
+                    $btn.data('sending', false);
+                }, 3000);
+            });
+            return false;
+        });
+
+        // Clean success message function
+        function showResendSuccess() {
+            // Create and show a clean success notification
+            var successHtml = `
+                <div id="resend-success-toast" style="
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    background: #d4edda;
+                    color: #155724;
+                    padding: 16px 20px;
+                    border: 1px solid #c3e6cb;
+                    border-radius: 8px;
+                    font-size: 14px;
+                    font-weight: 500;
+                    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+                    z-index: 1001;
+                    min-width: 320px;
+                    display: flex;
+                    align-items: center;
+                    gap: 12px;
+                ">
+                    <span style="font-size: 20px;">✅</span>
+                    <span>Email confirmation sent! Check your inbox.</span>
+                    <button onclick="$('#resend-success-toast').remove();" style="
+                        background: none;
+                        border: none;
+                        color: #155724;
+                        cursor: pointer;
+                        font-size: 18px;
+                        margin-left: auto;
+                        padding: 0;
+                        width: 20px;
+                        height: 20px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                    ">×</button>
+                </div>
+            `;
+            
+            $('body').append(successHtml);
+            
+            // Auto-remove after 5 seconds
+            setTimeout(function() {
+                $('#resend-success-toast').fadeOut(300, function() {
+                    $(this).remove();
+                });
+            }, 5000);
+        }
+
+        // Clean error message function
+        function showResendError(message) {
+            var errorHtml = `
+                <div id="resend-error-toast" style="
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    background: #f8d7da;
+                    color: #721c24;
+                    padding: 16px 20px;
+                    border: 1px solid #f5c6cb;
+                    border-radius: 8px;
+                    font-size: 14px;
+                    font-weight: 500;
+                    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+                    z-index: 1001;
+                    min-width: 320px;
+                    display: flex;
+                    align-items: center;
+                    gap: 12px;
+                ">
+                    <span style="font-size: 20px;">⚠️</span>
+                    <span>${message}</span>
+                    <button onclick="$('#resend-error-toast').remove();" style="
+                        background: none;
+                        border: none;
+                        color: #721c24;
+                        cursor: pointer;
+                        font-size: 18px;
+                        margin-left: auto;
+                        padding: 0;
+                        width: 20px;
+                        height: 20px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                    ">×</button>
+                </div>
+            `;
+            
+            $('body').append(errorHtml);
+            
+            // Auto-remove after 7 seconds for errors
+            setTimeout(function() {
+                $('#resend-error-toast').fadeOut(300, function() {
+                    $(this).remove();
+                });
+            }, 7000);
+        }
+
+        voucher_edit = false;
+        $('#voucher_submit').click(function () {
+            if (!voucher_edit) {
+                voucher_edit = true;
+                code = $('#voucher_input').val();
+                $.post('/myaccount/claimvoucher', {
+                    'code': code,
+                    'ctoken': csrf_token,
+                    'ctime': csrf_time
+                }, function (res) {
+                    data = $.parseJSON(res);
+                    if (data.success == 1) {
+                        if (!data.promo) {
+                            $('#voucher_overlay span').html('Your account has been upgraded to: ' + data.plan);
+                            $('#voucher_overlay').removeClass('error').show();
+                            if (data.is_premium) {
+                                $('#ma_account_status').html('<i class="ma_green_star"></i> <strong>Pro</strong>');
+                            }
+                            $('#voucher_input').val('');
+                        } else if (!data.plan) {
+                            $('#voucher_overlay span').html('Promo code active. You may now upgrade.');
+                            $('#voucher_overlay').removeClass('error').show();
+                            $('#voucher_input').val('');
+                        }
+                    } else {
+                        $('#voucher_overlay span').html(data.message);
+                        $('#voucher_overlay').addClass('error').show();
+                    }
+                    voucher_edit = false;
+                });
+            }
+            return false;
+        });
+
+        // 2FA enable
+        twofa_edit = false;
+        $('#enable_2fa_submit').click(function () {
+            if (!twofa_edit) {
+                twofa_edit = true;
+                password = $('#password_input').val();
+                $.post('/myaccount/enable_2fa', {
+                    'password': password,
+                    'ctoken': csrf_token,
+                    'ctime': csrf_time
+                }, function (res) {
+                    data = $.parseJSON(res);
+                    if (data.success == 1) {
+
+                        $('#verify_2fa').show();
+                        $('#two_fa_actual_form').hide();
+                        $('#twofa_overlay span').html('');
+                        $('#verify_secret strong').html(data.secret);
+                        $('#verify_qr_code').html('<img src="data:image/png;base64, ' + data.qr + '" width="256">');
+                        $('#twofa_overlay').css({'position':'relative'});
+                        $('#twofa_overlay').removeClass('error').show();
+
+                    } else {
+                        $('#twofa_overlay span').html(data.message);
+                        $('#twofa_overlay').addClass('error').show();
+                    }
+                    twofa_edit = false;
+                });
+            }
+            return false;
+        });
+
+        // Verify 2FA
+        twofa_edit = false;
+        $('#verify_2fa_submit').click(function () {
+            if (!twofa_edit) {
+                twofa_edit = true;
+                code = $('#code_input').val();
+                $.post('/myaccount/verify_2fa', {
+                    'code': code,
+                    'ctoken': csrf_token,
+                    'ctime': csrf_time
+                }, function (res) {
+                    data = $.parseJSON(res);
+                    if (data.success == 1) {
+                        $('#twofa_overlay span').html('2FA has been enabled');
+                        $('#ma_account_2fa_status strong').html('Enabled');
+                        $('#twofa_overlay').css({'position':'absolute'});
+                        $('#verify_2fa').hide();
+                        $('#twofa_overlay').show();
+                        $('#twofa_overlay').removeClass('error').show();
+                    } else {
+                        //$('#twofa_overlay span').html(data.message);
+                        alert(data.message);
+                        $('#twofa_overlay').addClass('error').show();
+                    }
+                    twofa_edit = false;
+                });
+            }
+            return false;
+        });
+
+        // 2FA Disable
+        twofa_edit = false;
+        $('#disable_2fa_submit').click(function () {
+            if (!twofa_edit) {
+                twofa_edit = true;
+                password = $('#password_input').val();
+                $.post('/myaccount/disable_2fa', {
+                    'password': password,
+                    'ctoken': csrf_token,
+                    'ctime': csrf_time
+                }, function (res) {
+                    data = $.parseJSON(res);
+                    if (data.success == 1) {
+                        $('#twofa_overlay span').html('2FA has been disabled');
+                        $('#ma_account_2fa_status strong').html('Disabled');
+                        $('#twofa_overlay').show();
+                    } else {
+                        $('#twofa_overlay span').html(data.message);
+                        $('#twofa_overlay').addClass('error').show();
+                    }
+                    twofa_edit = false;
+                });
+            }
+            return false;
+        });
+
+        $(document).on('click', '.delete_sl', function () {
+            sl_confirm = confirm('Are you sure?');
+            if (sl_confirm) {
+                sl_id = $(this).attr('data-id');
+                $.post('/myaccount/deletesecurelink', {
+                    'id': sl_id,
+                    'ctoken': csrf_token,
+                    'ctime': csrf_time
+                }, function (res) {
+                    data = $.parseJSON(res);
+                    if (data.success == 1) {
+                        $('#sl_' + sl_id).fadeOut();
+                    } else {
+                        alert(data.message);
+                    }
+                });
+            }
+            return false;
+        });
+        password_edit = false;
+        $('#pass_change_submit').click(function () {
+            if (!password_edit) {
+                password_edit = true;
+                old_pass = $('#old_pass_input').val();
+                new_pass = $('#new_pass_input').val();
+                confirm_pass = $('#confirm_pass_input').val();
+                $.post('/myaccount/editpassword', {
+                    'old_pass': old_pass,
+                    'new_pass': new_pass,
+                    'confirm_pass': confirm_pass,
+                    'ctoken': csrf_token,
+                    'ctime': csrf_time
+                }, function (res) {
+                    data = $.parseJSON(res);
+                    if (data.success == 1) {
+                        $('#password_overlay span').html('Your password has been changed');
+                        $('#password_overlay').show();
+                        $('#old_pass_input').val('');
+                        $('#new_pass_input').val('');
+                        $('#confirm_pass_input').val('');
+                    } else {
+                        $('#password_overlay span').html(data.message);
+                        $('#password_overlay').addClass('error').show();
+                    }
+                    password_edit = false;
+                });
+            }
+            return false;
+        });
+        withdraw_submit = false;
+        $('#withdraw_submit').click(function () {
+            if (!withdraw_submit) {
+                withdraw_submit = true;
+                method = $('#ma_withdraw_method').val();
+                address = $('#ma_withdraw_address').val();
+                $.post('/myaccount/withdrawrequest', {
+                    'method': method,
+                    'address': address,
+                    'ctoken': csrf_token,
+                    'ctime': csrf_time
+                }, function (res) {
+                    data = $.parseJSON(res);
+                    if (data.success == 1) {
+                        $('#withdraw_overlay span').html('Your payment is pending approval (5-10 days)');
+                        $('#withdraw_overlay').show();
+                        $('#aff_withdraw_span').html('Available to withdraw $0');
+                        $('#ma_withdraw_address').val('');
+                    } else {
+                        $('#withdraw_overlay span').html(data.message);
+                        $('#withdraw_overlay').addClass('error').show();
+                    }
+                    withdraw_submit = false;
+                });
+            }
+            return false;
+        });
+        // Store scroll position when opening modals
+        var savedScrollPosition = 0;
+        
+        close_popup = function () {
+            $('.cd-popup').removeClass('is-visible');
+            // Re-enable background scrolling and restore scroll position
+            $('body').removeClass('modal-open').css('top', '');
+            window.scrollTo(0, savedScrollPosition);
+            event.preventDefault();
+            return false;
+        };
+        if (voucher_pending) {
+            $('.cd-popup.voucher-modal').addClass('is-visible');
+        }
+
+        // Add click-away functionality to all modals
+        $('.cd-popup').on('click', function(event) {
+            // Only close if clicking on the modal backdrop, not its contents
+            if( $(event.target).is('.cd-popup') || $(event.target).is('.cd-popup-close') ) {
+                event.preventDefault();
+                
+                // Close appropriate modal based on class - all with scroll position restoration
+                if($(this).hasClass('edit-devices')) {
+                    $('.cd-popup.edit-devices').removeClass('is-visible');
+                    $('body').removeClass('modal-open').css('top', '');
+                    window.scrollTo(0, savedScrollPosition);
+                    if(typeof staticIPS !== 'undefined') staticIPS.reloadIfNeeded();
+                } else if($(this).hasClass('add-pf')) {
+                    $('.cd-popup.add-pf').removeClass('is-visible');
+                    $('body').removeClass('modal-open').css('top', '');
+                    window.scrollTo(0, savedScrollPosition);
+                    if(typeof staticIPS !== 'undefined') staticIPS.reloadIfNeeded();
+                } else if($(this).hasClass('dns-debug-modal')) {
+                    $('body').removeClass('modal-open').css('top', '');
+                    window.scrollTo(0, savedScrollPosition);
+                    if(typeof Robert !== 'undefined') Robert.closeDebug();
+                } else if($(this).hasClass('create-modal')) {
+                    $('body').removeClass('modal-open').css('top', '');
+                    window.scrollTo(0, savedScrollPosition);
+                    if(typeof ManagedAccounts !== 'undefined') ManagedAccounts.closeCreateModal();
+                } else if($(this).hasClass('credentials-modal')) {
+                    $('.cd-popup.credentials-modal').removeClass('is-visible');
+                    $('body').removeClass('modal-open').css('top', '');
+                    window.scrollTo(0, savedScrollPosition);
+                } else if($(this).hasClass('show-credentials-modal')) {
+                    $('.cd-popup.show-credentials-modal').removeClass('is-visible');
+                    $('body').removeClass('modal-open').css('top', '');
+                    window.scrollTo(0, savedScrollPosition);
+                } else if($(this).hasClass('new-device-added-modal')) {
+                    $('.cd-popup.new-device-added-modal').removeClass('is-visible');
+                    $('body').removeClass('modal-open').css('top', '');
+                    window.scrollTo(0, savedScrollPosition);
+                } else {
+                    close_popup();
+                }
+            }
+        });
+        
+        // Prevent background scrolling when any modal opens - with scroll position preservation
+        $(document).on('click', '[onclick*="cd-popup"], [onclick*="modal"]', function() {
+            // Store current scroll position before applying modal-open
+            savedScrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+            
+            // Add modal-open class with slight delay to ensure modal is visible
+            setTimeout(function() {
+                if($('.cd-popup.is-visible').length > 0) {
+                    $('body').addClass('modal-open').css('top', -savedScrollPosition + 'px');
+                }
+            }, 50);
+        });
+        
+        // Handle specific modal opening actions - with scroll position preservation
+        $('.edit_item, #delete_account_btn').on('click', function() {
+            // Store current scroll position before applying modal-open
+            savedScrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+            
+            setTimeout(function() {
+                if($('.cd-popup.is-visible').length > 0) {
+                    $('body').addClass('modal-open').css('top', -savedScrollPosition + 'px');
+                }
+            }, 50);
+        });
+
+        // Special handling for credentials modal (loaded via AJAX)
+        $(document).on('click', '.cd-popup.credentials-modal', function(event) {
+            if( $(event.target).is('.cd-popup.credentials-modal') || $(event.target).is('.cd-popup-close') ) {
+                event.preventDefault();
+                $('.cd-popup.credentials-modal').removeClass('is-visible');
+            }
+        });
+
+        // Email status button tooltip support for mobile devices
+        $('.email-status-btn').on('touchstart', function(e) {
+            e.preventDefault();
+            var $btn = $(this);
+            var tooltipText = $btn.attr('data-tooltip');
+
+            if (tooltipText) {
+                // Remove any existing tooltips
+                $('.email-status-btn.tooltip-open').removeClass('tooltip-open');
+
+                // Add tooltip-open class to show tooltip
+                $btn.addClass('tooltip-open');
+
+                // Auto-hide after 3 seconds
+                setTimeout(function() {
+                    $btn.removeClass('tooltip-open');
+                }, 3000);
+            }
+        });
+
+        // Modal voucher claim functionality
+        $('#modal_voucher_submit').click(function () {
+            $('#voucher-error-message').hide();
+            if (!voucher_edit) {
+                voucher_edit = true;
+                code = $('#modal_voucher_input').val();
+                $.post('/myaccount/claimvoucher', {
+                    'code': code,
+                    'ctoken': csrf_token,
+                    'ctime': csrf_time
+                }, function (res) {
+                    data = $.parseJSON(res);
+                    if (data.success == 1) {
+                        $('#voucher-form-container').hide();
+                        $('#voucher-success-container').show();
+                        if (!data.promo) {
+                            $('#voucher-success-message').text('Your account has been upgraded to: ' + data.plan);
+                            location.reload();
+                        } else if (!data.plan) {
+                            $('#voucher-success-message').text('Promo code active. You may now upgrade.');
+                        }
+                        $('#modal_voucher_input').val('');
+                    } else {
+                        $('#voucher-error-message').text(data.message).show();
+                    }
+                    voucher_edit = false;
+                });
+            }
+            return false;
+        });
+
+        // Modal email change functionality
+        $('#modal_email_change_submit').click(function () {
+            $('#email-error-message').hide();
+            if (!email_edit) {
+                email_edit = true;
+                new_email = $('#modal_new_email_input').val();
+                password = $('#modal_new_email_pass_input').val();
+                $.post('/myaccount/editemail', {
+                    'email': new_email,
+                    'password': password,
+                    'ctoken': csrf_token,
+                    'ctime': csrf_time
+                }, function (res) {
+                    data = $.parseJSON(res);
+                    var success = (data.success == 1) ? 1 : 0;
+                    if(typeof _paq != 'undefined'){
+                        _paq.push(['trackEvent', 'MyAccount', 'Profile', 'edit-email-submit', success]);
+                    }
+                    if (data.success == 1) {
+                        $('#email_display').html(new_email);
+                        $('#email-form-container').hide();
+                        $('#email-success-container').show();
+                        $('#modal_new_email_input').val('');
+                        $('#modal_new_email_pass_input').val('');
+                    } else {
+                        $('#email-error-message').text(data.message).show();
+                    }
+                    email_edit = false;
+                });
+            }
+            return false;
+        });
+
+        // Modal email delete functionality
+        $('#modal_email_delete').click(function () {
+            // Hide the form and show confirmation
+            $('#email-form-container').hide();
+            $('#email-delete-confirm-container').show();
+            return false;
+        });
+
+        // Confirm email delete
+        $(document).on('click', '#confirm_email_delete', function () {
+            $.post('/myaccount/deleteemail', {
+                'ctoken': csrf_token,
+                'ctime': csrf_time
+            }, function (res) {
+                data = $.parseJSON(res);
+                if (data.success == 1) {
+                    $('#email_display').html('N/A');
+                    close_popup();
+                    location.reload();
+                } else {
+                    $('#email-error-message').text(data.message).show();
+                }
+            });
+            return false;
+        });
+
+        // Modal password change functionality
+        $('#modal_pass_change_submit').click(function () {
+            $('#password-error-message').hide();
+            if (!password_edit) {
+                password_edit = true;
+                old_pass = $('#modal_old_pass_input').val();
+                new_pass = $('#modal_new_pass_input').val();
+                confirm_pass = $('#modal_confirm_pass_input').val();
+                $.post('/myaccount/editpassword', {
+                    'old_pass': old_pass,
+                    'new_pass': new_pass,
+                    'confirm_pass': confirm_pass,
+                    'ctoken': csrf_token,
+                    'ctime': csrf_time
+                }, function (res) {
+                    data = $.parseJSON(res);
+                    var success = (data.success == 1) ? 1 : 0;
+                    if(typeof _paq != 'undefined'){
+                        _paq.push(['trackEvent', 'MyAccount', 'Security', 'edit-password-submit', success]);
+                    }
+                    if (data.success == 1) {
+                        $('#password-form-container').hide();
+                        $('#password-success-container').show();
+                        $('#modal_old_pass_input').val('');
+                        $('#modal_new_pass_input').val('');
+                        $('#modal_confirm_pass_input').val('');
+                    } else {
+                        $('#password-error-message').text(data.message).show();
+                    }
+                    password_edit = false;
+                });
+            }
+            return false;
+        });
+
+        // Modal 2FA enable functionality - Step 1: Get QR Code
+        $('#modal_enable_2fa_submit').click(function () {
+            if (!twofa_edit) {
+                twofa_edit = true;
+                password = $('#modal_password_input').val();
+                $.post('/myaccount/enable_2fa', {
+                    'password': password,
+                    'ctoken': csrf_token,
+                    'ctime': csrf_time
+                }, function (res) {
+                    data = $.parseJSON(res);
+                    var success = (data.success == 1) ? 1 : 0;
+                    if(typeof _paq != 'undefined'){
+                        _paq.push(['trackEvent', 'MyAccount', 'Security', '2fa-enable-submit', success]);
+                    }
+                    if (data.success == 1) {
+                        // Show step 2 with QR code
+                        $('#mfa-step-1').hide();
+                        $('#mfa-step-2').show();
+                        $('#modal_verify_qr_code').html('<img src="data:image/png;base64, ' + data.qr + '" width="200">');
+                        $('#modal_verify_secret').text(data.secret);
+                        // Reset checkbox and disable verify button
+                        $('#mfa-backup-confirmed').prop('checked', false);
+                        $('#modal_verify_2fa_submit').prop('disabled', true);
+                    } else {
+                        $('#mfa-step-1 .modal-error-message').remove();
+                        $('#mfa-step-1 .ma-modal-actions').before('<div class="modal-error-message">' + data.message + '</div>');
+                    }
+                    twofa_edit = false;
+                });
+            }
+            return false;
+        });
+
+        // Enable/disable verify button based on backup confirmation checkbox
+        $('#mfa-backup-confirmed').change(function() {
+            $('#modal_verify_2fa_submit').prop('disabled', !$(this).is(':checked'));
+        });
+
+        // Modal 2FA verification - Step 2: Verify code
+        $('#modal_verify_2fa_submit').click(function () {
+            $('#mfa-verify-error-message').hide();
+            if (!twofa_edit) {
+                twofa_edit = true;
+                code = $('#modal_code_input').val();
+                $.post('/myaccount/verify_2fa', {
+                    'code': code,
+                    'ctoken': csrf_token,
+                    'ctime': csrf_time
+                }, function (res) {
+                    data = $.parseJSON(res);
+                    var success = (data.success == 1) ? 1 : 0;
+                    if(typeof _paq != 'undefined'){
+                        _paq.push(['trackEvent', 'MyAccount', 'Security', '2fa-verify-submit', success]);
+                    }
+                    if (data.success == 1) {
+                        $('#mfa-step-2').hide();
+                        $('#mfa-success-container').show();
+                        setTimeout(function() {
+                            location.reload();
+                        }, 2000);
+                    } else {
+                        $('#mfa-verify-error-message').text(data.message).show();
+                    }
+                    twofa_edit = false;
+                });
+            }
+            return false;
+        });
+
+        // Modal 2FA disable functionality
+        $('#modal_disable_2fa_submit').click(function () {
+            if (!twofa_edit) {
+                twofa_edit = true;
+                password = $('#modal_password_input').val();
+                $.post('/myaccount/disable_2fa', {
+                    'password': password,
+                    'ctoken': csrf_token,
+                    'ctime': csrf_time
+                }, function (res) {
+                    data = $.parseJSON(res);
+                    var success = (data.success == 1) ? 1 : 0;
+                    if(typeof _paq != 'undefined'){
+                        _paq.push(['trackEvent', 'MyAccount', 'Security', '2fa-disable-submit', success]);
+                    }
+                    if (data.success == 1) {
+                        $('#mfa-step-1').hide();
+                        $('#mfa-disable-success-container').show();
+                        setTimeout(function() {
+                            location.reload();
+                        }, 2000);
+                    } else {
+                        $('#mfa-step-1 .modal-error-message').remove();
+                        $('#mfa-step-1 .ma-modal-actions').before('<div class="modal-error-message">' + data.message + '</div>');
+                    }
+                    twofa_edit = false;
+                });
+            }
+            return false;
+        });
+
+        // Sessions modal functionality
+        $('.sessions-manage-modal').on('click', function(event) {
+            if( $(event.target).is('.cd-popup-close') || $(event.target).is('.sessions-manage-modal') ) {
+                event.preventDefault();
+                close_popup();
+            }
+        });
+
+        // Credentials modal functionality
+        $('.credentials-manage-modal').on('click', function(event) {
+            if( $(event.target).is('.cd-popup-close') || $(event.target).is('.credentials-manage-modal') ) {
+                event.preventDefault();
+                close_popup();
+            }
+        });
+
+        // Modal sessions actions - no alerts, show in modal
+        $('#modal_delete_sessions').click(function () {
+            if(typeof _paq != 'undefined'){
+                _paq.push(['trackEvent', 'MyAccount', 'Security', 'delete-sessions']);
+            }
+            $('#sessions-error-message').hide();
+            $.post('/myaccount/deletesessions', {
+                'ctoken': csrf_token,
+                'ctime': csrf_time
+            }, function (res) {
+                data = $.parseJSON(res);
+                if (data.success == 1) {
+                    $('#sessions-form-container').hide();
+                    $('#sessions-success-container').show();
+                    $('#sessions-success-message').text('Sessions deleted. Please login again.');
+                    if(typeof _paq != 'undefined'){
+                        _paq.push(['trackEvent', 'MyAccount', 'Security', 'delete-sessions-success']);
+                    }
+                } else {
+                    $('#sessions-error-message').text(data.message).show();
+                }
+            }).fail(function() {
+                $('#sessions-error-message').text('Failed to delete sessions. Please try again.').show();
+            });
+            return false;
+        });
+
+        // Modal credentials actions - no alerts, show in modal
+        $('#modal_delete_credentials').click(function () {
+            if(typeof _paq != 'undefined'){
+                _paq.push(['trackEvent', 'MyAccount', 'Security', 'delete-credentials']);
+            }
+            $('#credentials-error-message').hide();
+            $.post('/myaccount/deletecredentials', {
+                'ctoken': csrf_token,
+                'ctime': csrf_time
+            }, function (res) {
+                data = $.parseJSON(res);
+                if (data.success == 1) {
+                    $('#credentials-form-container').hide();
+                    $('#credentials-success-container').show();
+                    $('#credentials-success-message').text('VPN credentials deleted successfully.');
+                    if(typeof _paq != 'undefined'){
+                        _paq.push(['trackEvent', 'MyAccount', 'Security', 'delete-credentials-success']);
+                    }
+                } else {
+                    $('#credentials-error-message').text(data.message).show();
+                }
+            }).fail(function() {
+                $('#credentials-error-message').text('Failed to delete credentials. Please try again.').show();
+            });
+            return false;
+        });
+
+        // Modal username change functionality
+        username_edit = false;
+        $('#modal_username_change_submit').click(function () {
+            $('#username-error-message').hide();
+            if (!username_edit) {
+                username_edit = true;
+                new_username = $('#modal_new_username_input').val();
+                password = $('#modal_username_pass_input').val();
+                $.post('/myaccount/editusername', {
+                    'username': new_username,
+                    'password': password,
+                    'ctoken': csrf_token,
+                    'ctime': csrf_time
+                }, function (res) {
+                    data = $.parseJSON(res);
+                    var success = (data.success == 1) ? 1 : 0;
+                    if(typeof _paq != 'undefined'){
+                        _paq.push(['trackEvent', 'MyAccount', 'Profile', 'edit-username-submit', success]);
+                    }
+                    if (data.success == 1) {
+                        $('.ma_value').first().html(new_username); // Update username display
+                        $('#username-form-container').hide();
+                        $('#username-success-container').show();
+                        $('#modal_new_username_input').val('');
+                        $('#modal_username_pass_input').val('');
+                    } else {
+                        $('#username-error-message').text(data.message).show();
+                    }
+                    username_edit = false;
+                });
+            }
+            return false;
+        });
+
+        // Reset modal states when opening
+        $('.cd-popup').on('show', function() {
+            // Reset email modal
+            $('#email-form-container').show();
+            $('#email-success-container').hide();
+            $('#email-delete-confirm-container').hide();
+            $('#email-error-message').hide();
+            
+            // Reset password modal
+            $('#password-form-container').show();
+            $('#password-success-container').hide();
+            $('#password-error-message').hide();
+            
+            // Reset username modal
+            $('#username-form-container').show();
+            $('#username-success-container').hide();
+            $('#username-error-message').hide();
+            
+            // Reset MFA modal
+            $('#mfa-step-1').show();
+            $('#mfa-step-2').hide();
+            $('#mfa-success-container').hide();
+            $('#mfa-disable-success-container').hide();
+            $('.modal-error-message').remove();
+            
+            // Reset security modal
+            $('#security-form-container').show();
+            $('#security-success-container').hide();
+            $('#security-error-message').hide();
+        });
+
+        // Life choices radio button handler
+        $('input[name="life_choices"]').change(function() {
+            var selected = $(this).val();
+            var $message = $('#life_choice_message');
+            if (selected === 'yes') {
+                $message.text('Maybe you should do that now?').removeClass('life-choice-no').addClass('life-choice-yes').fadeIn(200);
+            } else if (selected === 'no') {
+                $message.text("Maybe it's time to start?").removeClass('life-choice-yes').addClass('life-choice-no').fadeIn(200);
+            }
+            validateDeleteAccountForm();
+        });
+        
+        // Delete account form validation
+        function validateDeleteAccountForm() {
+            var lifeChoiceSelected = $('input[name="life_choices"]:checked').length > 0;
+            var passwordFilled = $('#delete_account_password_input').val().trim().length > 0;
+            var reasonFilled = $('#delete_account_reason_input').val().trim().length > 0;
+            var refundChecked = true;
+                        refundChecked = $('#delete_account_refund_warning').is(':checked');
+                        
+            var allValid = lifeChoiceSelected && passwordFilled && reasonFilled && refundChecked;
+            $('#modal_delete_account_submit').prop('disabled', !allValid);
+        }
+        
+        // Wire up validation to all form inputs
+        $('#delete_account_password_input, #delete_account_reason_input').on('input', validateDeleteAccountForm);
+                $('#delete_account_refund_warning').change(validateDeleteAccountForm);
+                
+        // Modal delete account functionality
+        $('#modal_delete_account_submit').click(function () {
+            $('#delete-account-error-message').hide();
+            var password = $('#delete_account_password_input').val();
+            
+            if (!password) {
+                $('#delete-account-error-message').text('Please enter your password to confirm account deletion.').show();
+                return false;
+            }
+            
+            var reason = $('#delete_account_reason_input').val();
+            
+            if (!reason || reason.length < 10) {
+                $('#delete-account-error-message').text('Please enter a more detailed reason for cancellation').show();
+                return false;
+            }
+            
+                        if (!$('#delete_account_refund_warning').is(':checked')) {
+                $('#delete-account-error-message').text('You must confirm that you understand the consequence of account deletion').show();
+                return false;
+            }
+                        
+            // Prepend life choices answer to reason
+            var lifeChoice = $('input[name="life_choices"]:checked').val();
+            var finalReason = reason;
+            if (lifeChoice) {
+                finalReason = lifeChoice.toUpperCase() + ' - ' + reason;
+            }
+            
+            var postData = {
+                'password': password,
+                'message': finalReason,
+                'cancel_type': 'account',
+                'ctoken': csrf_token,
+                'ctime': csrf_time
+            };
+            
+                        postData['expire_ok'] = $('#delete_account_refund_warning').is(':checked') ? 1 : 0;
+                        
+            $.post('/myaccount/deleteaccount', postData, function (res) {
+                var data = $.parseJSON(res);
+                var success = (data.success == 1) ? 1 : 0;
+                if(typeof _paq != 'undefined'){
+                    _paq.push(['trackEvent', 'MyAccount', 'Security', 'delete-account-submit', success]);
+                }
+                if (data.success == 1) {
+                    $('#delete-account-form-container').hide();
+                    $('#delete-account-success-container').show();
+                    setTimeout(function() {
+                        window.location.href = '/';
+                    }, 5000);
+                } else {
+                    $('#delete-account-error-message').text(data.message || 'An error occurred. Please try again.').show();
+                }
+            }).fail(function(xhr) {
+                $('#delete-account-error-message').text('An error occurred. Please try again.').show();
+            });
+            
+            return false;
+        });
+
+        // Reset delete account modal when opening
+        $('.cd-popup.delete-account-modal').on('show', function() {
+            $('#delete-account-form-container').show();
+            $('#delete-account-success-container').hide();
+            $('#delete-account-error-message').hide();
+            $('#delete_account_password_input').val('');
+            $('#delete_account_reason_input').val('');
+            $('input[name="life_choices"]').prop('checked', false);
+            $('#life_choice_message').hide().text('');
+                        $('#delete_account_refund_warning').prop('checked', false);
+                        $('#delete_account_beaver_hate').prop('checked', false);
+            $('#modal_delete_account_submit').prop('disabled', true);
+        });
+
+        // ===================================================================
+        // DARK MODE FUNCTIONALITY - Toggle and persistence
+        // ===================================================================
+        
+        // Initialize dark mode from localStorage
+        function initDarkMode() {
+            const savedTheme = localStorage.getItem('windscribe-theme');
+            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            
+            // Use saved theme or system preference
+            const theme = savedTheme || (prefersDark ? 'dark' : 'light');
+            setTheme(theme);
+        }
+        
+        // Set theme and update UI
+        function setTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('windscribe-theme', theme);
+            
+            // Update theme toggle button appearance
+            const themeIcon = document.getElementById('theme-icon');
+            const themeLabel = document.getElementById('theme-label');
+            const themeRowIcon = document.getElementById('theme-row-icon');
+            
+            if (themeIcon && themeLabel) {
+                if (theme === 'dark') {
+                    themeIcon.className = 'fas fa-sun';
+                    themeLabel.textContent = 'Light Mode';
+                    if (themeRowIcon) themeRowIcon.className = 'fas fa-sun';
+                } else {
+                    themeIcon.className = 'fas fa-moon';
+                    themeLabel.textContent = 'Dark Mode';
+                    if (themeRowIcon) themeRowIcon.className = 'fas fa-moon';
+                }
+            }
+        }
+        
+        // Toggle between light and dark mode
+        window.toggleDarkMode = function() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            setTheme(newTheme);
+
+            // Trigger analytics if available
+            if (typeof _paq !== 'undefined') {
+                _paq.push(['trackEvent', 'MyAccount', 'Settings', 'dark-mode']);
+            }
+        };
+
+        // Update favorite weekday preference
+        window.updateFavoriteWeekday = function(value) {
+            $.post('/myaccount/favoriteweekday', {
+                'pref_fav_weekday': value,
+                'ctoken': csrf_token,
+                'ctime': csrf_time
+            }, function(res) {
+                data = $.parseJSON(res);
+                if (data.success !== 1) {
+                    // Revert the dropdown if API call failed
+                    $('#fav_weekday_select').val(data.pref_fav_weekday || '');
+                    alert(data.message || 'Failed to update favorite weekday');
+                } else {
+                    // Remove "Undecided" option once a valid selection is made
+                    if (value && value >= 1 && value <= 7) {
+                        $('#fav_weekday_select option[value=""]').remove();
+                    }
+                }
+                // Trigger analytics if available
+                if (typeof _paq !== 'undefined') {
+                    _paq.push(['trackEvent', 'MyAccount', 'Settings', 'favorite-weekday']);
+                }
+            }).fail(function() {
+                // Revert the dropdown on network error
+                $('#fav_weekday_select').val('');
+                alert('Failed to update favorite weekday. Please try again.');
+            });
+        };
+        
+        // Listen for system theme changes
+        if (window.matchMedia) {
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+                // Only auto-switch if user hasn't manually set a preference
+                if (!localStorage.getItem('windscribe-theme')) {
+                    setTheme(e.matches ? 'dark' : 'light');
+                }
+            });
+        }
+        
+        // Initialize theme on page load
+        initDarkMode();
+        
+        // ===================================================================
+        // WARNING BANNERS & SETUP GUIDE - Show/hide with localStorage persistence
+        // ===================================================================
+        
+        // Check if setup guide should be hidden
+        const hideSetupGuide = localStorage.getItem('windscribe-hide-setup-guide');
+        if (hideSetupGuide && $('#account-setup-guide').length) {
+            $('#account-setup-guide').hide();
+        }
+        
+        // Check if warnings should be shown (order matters - security first)
+        const hideSecurityWarning = localStorage.getItem('windscribe-hide-security-warning');
+        if (!hideSecurityWarning && $('#security-critical-banner').length) {
+            $('#security-critical-banner').slideDown(300);
+        }
+        
+        const hide2FAWarning = localStorage.getItem('windscribe-hide-2fa-warning');
+        if (!hide2FAWarning && $('#twofa-warning-banner').length) {
+            $('#twofa-warning-banner').slideDown(300);
+        }
+        
+        const hideEmailWarning = localStorage.getItem('windscribe-hide-email-warning');
+        if (!hideEmailWarning && $('#email-warning-banner').length) {
+            $('#email-warning-banner').slideDown(300);
+        }
+
+    });
+
+</script>
+<div class="cd-popup voucher-modal" role="alert">
+    <div class="cd-popup-container">
+        <p id="popup-text">You need to confirm your email before you voucher code is activated.</p>
+        <ul class="cd-buttons">
+            <li><a href="#" onclick="close_popup();">OK</a></li>
+            <li><a href="#" onclick="close_popup();">Cancel</a></li>
+        </ul>
+        <a href="#0" class="cd-popup-close img-replace">Close</a>
+    </div> <!-- cd-popup-container -->
+</div> <!-- cd-popup -->
+
+
+<div class="cd-popup review-modal" role="alert">
+    <div class="cd-popup-container" style="max-width: 480px;">
+        <h1>View Custom Plan</h1>
+        
+        <div style="padding: 24px 24px 0px 24px;">
+            
+            
+                    </div>
+        
+        <div class="ma-modal-actions">
+            <button class="btn-secondary" onclick="close_popup(); return false;">Close</button>
+        </div>
+
+        <a href="#0" class="cd-popup-close img-replace" onclick="close_popup(); return false;">Close</a>
+    </div>
+</div>
+
+<div class="cd-popup dns-debug-modal" role="alert">
+    <div class="cd-popup-container debug-modal-container">
+        <h1>Debug Mode</h1>
+
+        <div id="debug-start-form">
+            <p class="debug-modal-intro">Select the types of queries you wish to be logged into your private debug log.</p>
+            
+            <div class="debug-modal-content">
+                <h2 class="debug-modal-subtitle">What do you wish to log?</h2>
+
+                <div class="debug-options-container">
+                    <label class="debug-option-label">
+                        <input type="checkbox" id="debug-block-checkbox" onchange="Robert.updateDebugRule('block', this.checked)" class="debug-checkbox">
+                        <span class="debug-option-text">Blocked</span>
+                    </label>
+
+                    <label class="debug-option-label">
+                        <input type="checkbox" id="debug-pass-checkbox" onchange="Robert.updateDebugRule('pass', this.checked)" class="debug-checkbox">
+                        <span class="debug-option-text">Resolved</span>
+                    </label>
+
+                    <label class="debug-option-label">
+                        <input type="checkbox" id="debug-spoof-checkbox" onchange="Robert.updateDebugRule('spoof', this.checked)" class="debug-checkbox">
+                        <span class="debug-option-text">Spoofed</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="ma-modal-actions">
+                <button class="btn-primary" onclick="Robert.startDebugLog(); return false;">Start Debug</button>
+                <button class="btn-secondary" onclick="Robert.closeDebug(); return false;">Cancel</button>
+            </div>
+        </div>
+
+        <div id="debug-stop-form" class="debug-hidden">
+            <div class="debug-running-container">
+                <div class="debug-timer-icon">⏱️</div>
+                <h2 class="debug-running-title">Debug Running</h2>
+                <div class="debug-countdown-container">
+                    <span id="debug-countdown">00:00</span>
+                </div>
+            </div>
+            
+            <div class="ma-modal-actions">
+                <button class="btn-secondary" onclick="Robert.stopDebugLog(); return false;">Stop & Get Logs</button>
+            </div>
+        </div>
+
+        <div id="debug-results-cont" class="debug-hidden">
+            <div class="debug-modal-content">
+                <h2 class="debug-modal-subtitle">Debug Results</h2>
+                <div id="debug-results" class="debug-results-output"></div>
+            </div>
+            
+            <div class="ma-modal-actions">
+                <button class="btn-primary" onclick="Robert.openDebugModal(); return false;">Start New Debug</button>
+                <button class="btn-secondary" onclick="Robert.closeDebug(); return false;">Close</button>
+            </div>
+        </div>
+
+        <a href="#0" class="cd-popup-close img-replace" onclick="Robert.closeDebug(); return false;">Close</a>
+    </div>
+</div>
+
+<div class="cd-popup email-edit-modal" role="alert">
+    <div class="cd-popup-container" style="max-width: 480px;">
+        <h1>Edit Email Address</h1>
+        
+        <div id="email-form-container">
+            <div class="ma-field-group">
+                <label class="ma-field-label">New Email Address</label>
+                <input type="email" class="ma-modal-input" placeholder="Enter new email address" id="modal_new_email_input"/>
+            </div>
+            
+            <div class="ma-field-group">
+                <label class="ma-field-label">Current Password</label>
+                <input type="password" class="ma-modal-input" placeholder="Enter your current password" id="modal_new_email_pass_input"/>
+            </div>
+            
+            <div id="email-error-message" class="modal-error-message" style="display: none;"></div>
+            
+            <div class="ma-modal-actions">
+                <button class="btn-primary" id="modal_email_change_submit">Update Email</button>
+                                    <button class="btn-secondary" id="modal_email_delete" style="background: #dc3545 !important; color: #fff !important; border-color: #dc3545 !important;">Delete Email</button>
+                                <button class="btn-secondary" onclick="close_popup();">Cancel</button>
+            </div>
+        </div>
+        
+        <div id="email-success-container" style="display: none;">
+            <div class="modal-simple-success">
+                <h2 class="modal-simple-success-title">Email Updated</h2>
+                <p class="modal-simple-success-text">Please check your inbox for a confirmation email.</p>
+            </div>
+            <div class="ma-modal-actions">
+                <button class="btn-primary" onclick="close_popup();">Done</button>
+            </div>
+        </div>
+        
+        <div id="email-delete-confirm-container" style="display: none;">
+            <div class="modal-warning-section">
+
+                <p>You will not be able to reset your password or receive account notifications!</p>
+            </div>
+            
+            <div class="ma-modal-actions">
+                <button class="btn-secondary" id="confirm_email_delete" style="background: #dc3545 !important; color: #fff !important; border-color: #dc3545 !important;">Yes, Delete Email</button>
+                <button class="btn-secondary" onclick="close_popup();">Cancel</button>
+            </div>
+        </div>
+        
+        <a href="#0" class="cd-popup-close img-replace" onclick="close_popup(); return false;">Close</a>
+    </div>
+</div>
+
+<div class="cd-popup password-edit-modal" role="alert">
+    <div class="cd-popup-container" style="max-width: 480px;">
+        <h1>Change Password</h1>
+        
+        <div id="password-form-container">
+            <div class="ma-field-group">
+                <label class="ma-field-label">Current Password</label>
+                <input type="password" class="ma-modal-input" placeholder="Enter current password" id="modal_old_pass_input"/>
+            </div>
+            
+            <div class="ma-field-group">
+                <label class="ma-field-label">New Password</label>
+                <input type="password" class="ma-modal-input" placeholder="Enter new password" id="modal_new_pass_input"/>
+            </div>
+            
+            <div class="ma-field-group">
+                <label class="ma-field-label">Confirm Password</label>
+                <input type="password" class="ma-modal-input" placeholder="Confirm new password" id="modal_confirm_pass_input"/>
+            </div>
+            
+            <p style="font-size: 15px; color: #ff0000; text-align: center; margin: 10px 0; font-weight: bold;">All existing application sessions will be logged out.</p>
+            
+            <div id="password-error-message" class="modal-error-message" style="display: none;"></div>
+            
+            <div class="ma-modal-actions">
+                <button class="btn-primary" id="modal_pass_change_submit">Update Password</button>
+                <button class="btn-secondary" onclick="close_popup();">Cancel</button>
+            </div>
+        </div>
+        
+        <div id="password-success-container" style="display: none;">
+            <div class="modal-simple-success">
+                <h2 class="modal-simple-success-title">Password Updated</h2>
+                <p class="modal-simple-success-text">Your password has been successfully changed.</p>
+            </div>
+            <div class="ma-modal-actions">
+                <button class="btn-primary" onclick="close_popup();">Done</button>
+            </div>
+        </div>
+        
+        <a href="#0" class="cd-popup-close img-replace" onclick="close_popup(); return false;">Close</a>
+    </div>
+</div>
+
+<div class="cd-popup mfa-manage-modal" role="alert">
+    <div class="cd-popup-container" style="max-width: 520px;">
+        <h1>Manage Two-Factor Authentication</h1>
+        
+        <!-- Step 1: Password input -->
+        <div id="mfa-step-1">
+            <div class="ma-field-group">
+                <label class="ma-field-label">Your Password</label>
+                <input type="password" class="ma-modal-input" placeholder="Enter your current password" id="modal_password_input"/>
+            </div>
+            
+            <div class="ma-modal-actions">
+                                    <button class="btn-primary" id="modal_enable_2fa_submit">Enable 2FA</button>
+                                <button class="btn-secondary" onclick="close_popup();">Cancel</button>
+            </div>
+        </div>
+        
+        <!-- Step 2: QR Code verification (for enable only) -->
+        <div id="mfa-step-2" style="display: none;">
+            <div style="text-align: center; padding: 16px 24px;">
+                <p class="mfa-modal-text" style="margin-bottom: 16px;">Scan this QR code with any TOTP supporting 2FA application</p>
+                <div id="modal_verify_qr_code" style="margin: 16px 0;"></div>
+            </div>
+            
+            <div class="ma-field-group">
+                <label class="ma-field-label">Recovery Code</label>
+                <div id="modal_verify_secret" class="mfa-recovery-code"></div>
+            </div>
+            
+            <div class="modal-info-message">
+                <i class="fas fa-info-circle"></i>
+                <span>Save this recovery code securely. You'll need it to regain access if you lose your authenticator device.</span>
+            </div>
+            
+            <div class="ma-field-group">
+                <label class="ma-field-label">Verification Code</label>
+                <input type="text" class="ma-modal-input" placeholder="Enter 6-digit code from your app" id="modal_code_input" maxlength="6"/>
+            </div>
+            
+            <div id="mfa-verify-error-message" class="modal-error-message" style="display: none;"></div>
+            
+            <div class="mfa-backup-confirmation">
+                <label class="delete-checkbox-item">
+                    <input type="checkbox" id="mfa-backup-confirmed">
+                    <span class="delete-checkbox-text">I have securely saved my recovery code and understand that Windscribe may not be able to recover my account if I lose both my authenticator and this code</span>
+                </label>
+            </div>
+            
+            <div class="ma-modal-actions">
+                <button class="btn-primary" id="modal_verify_2fa_submit" disabled>Verify & Enable</button>
+                <button class="btn-secondary" onclick="close_popup();">Cancel</button>
+            </div>
+        </div>
+        
+        <!-- Step 3: Success screen -->
+        <div id="mfa-success-container" style="display: none;">
+            <div class="modal-simple-success">
+                <h2 class="modal-simple-success-title">2FA Enabled</h2>
+                <p class="modal-simple-success-text">Two-Factor Authentication is now active on your account.</p>
+            </div>
+            <div class="ma-modal-actions">
+                <button class="btn-primary" onclick="close_popup();">Done</button>
+            </div>
+        </div>
+        
+        <!-- Disable success screen -->
+        <div id="mfa-disable-success-container" style="display: none;">
+            <div class="modal-simple-success">
+                <h2 class="modal-simple-success-title">2FA Disabled</h2>
+                <p class="modal-simple-success-text">Two-Factor Authentication has been turned off.</p>
+            </div>
+            <div class="ma-modal-actions">
+                <button class="btn-primary" onclick="close_popup();">Done</button>
+            </div>
+        </div>
+        
+        <a href="#0" class="cd-popup-close img-replace" onclick="close_popup(); return false;">Close</a>
+    </div>
+</div>
+
+<!-- Sessions Management Modal -->
+<div class="cd-popup sessions-manage-modal" role="alert">
+    <div class="cd-popup-container" style="max-width: 480px;">
+        <h1>Manage Sessions</h1>
+
+        <div id="sessions-form-container">
+            <div class="security-action-container">
+                <h3 class="security-action-title">Delete All Sessions</h3>
+                <p class="security-action-description">
+                    This will log out all clients associated with your account, and log you out from the website. Use this if you suspect unauthorized access to your account (better yet - reset your password).
+                </p>
+                <button id="modal_delete_sessions" class="security-action-button primary">Delete All Sessions</button>
+            </div>
+
+            <div id="sessions-error-message" class="modal-error-message" style="display: none;"></div>
+
+            <div class="ma-modal-actions">
+                <button class="btn-secondary" onclick="close_popup();">Close</button>
+            </div>
+        </div>
+
+        <div id="sessions-success-container" style="display: none;">
+            <div class="modal-simple-success">
+                <h2 class="modal-simple-success-title" id="sessions-success-title">Action Completed</h2>
+                <p class="modal-simple-success-text" id="sessions-success-message"></p>
+            </div>
+            <div class="ma-modal-actions">
+                <button class="btn-primary" onclick="close_popup();">Done</button>
+            </div>
+        </div>
+
+        <a href="#0" class="cd-popup-close img-replace" onclick="close_popup(); return false;">Close</a>
+    </div>
+</div>
+
+<!-- VPN Credentials Management Modal -->
+<div class="cd-popup credentials-manage-modal" role="alert">
+    <div class="cd-popup-container" style="max-width: 480px;">
+        <h1>Manage VPN Credentials</h1>
+
+        <div id="credentials-form-container">
+            <div class="security-action-container">
+                <h3 class="security-action-title">Delete VPN Credentials</h3>
+                <p class="security-action-description">
+                    This will delete all generated VPN credentials and all static IP devices and port forwards (if you have any).
+                </p>
+                <button id="modal_delete_credentials" class="security-action-button primary">Delete VPN Credentials</button>
+            </div>
+
+            <div id="credentials-error-message" class="modal-error-message" style="display: none;"></div>
+
+            <div class="ma-modal-actions">
+                <button class="btn-secondary" onclick="close_popup();">Close</button>
+            </div>
+        </div>
+
+        <div id="credentials-success-container" style="display: none;">
+            <div class="modal-simple-success">
+                <h2 class="modal-simple-success-title" id="credentials-success-title">Action Completed</h2>
+                <p class="modal-simple-success-text" id="credentials-success-message"></p>
+            </div>
+            <div class="ma-modal-actions">
+                <button class="btn-primary" onclick="close_popup();">Done</button>
+            </div>
+        </div>
+
+        <a href="#0" class="cd-popup-close img-replace" onclick="close_popup(); return false;">Close</a>
+    </div>
+</div>
+
+<div class="cd-popup voucher-claim-modal" role="alert">
+    <div class="cd-popup-container" style="max-width: 480px;">
+        <h1>Claim Voucher Code</h1>
+        
+        <div id="voucher-form-container">
+            <div class="ma-field-group">
+                <label class="ma-field-label">Voucher Code</label>
+                <input type="text" class="ma-modal-input" placeholder="Enter voucher code" id="modal_voucher_input"/>
+            </div>
+            
+            <div id="voucher-error-message" class="modal-error-message" style="display: none;"></div>
+            
+            <div class="ma-modal-actions">
+                <button class="btn-primary" id="modal_voucher_submit">Claim Voucher</button>
+                <button class="btn-secondary" onclick="close_popup();">Cancel</button>
+            </div>
+        </div>
+        
+        <div id="voucher-success-container" style="display: none;">
+            <div class="modal-simple-success">
+                <h2 class="modal-simple-success-title">Voucher Claimed</h2>
+                <p class="modal-simple-success-text" id="voucher-success-message"></p>
+            </div>
+            <div class="ma-modal-actions">
+                <button class="btn-primary" onclick="close_popup();">Done</button>
+            </div>
+        </div>
+        
+        <a href="#0" class="cd-popup-close img-replace" onclick="close_popup(); return false;">Close</a>
+    </div>
+</div>
+
+<div class="cd-popup username-edit-modal" role="alert">
+    <div class="cd-popup-container" style="max-width: 480px;">
+        <h1>Edit Username</h1>
+        
+        <div id="username-form-container">
+            <div class="ma-field-group">
+                <label class="ma-field-label">New Username</label>
+                <input type="text" class="ma-modal-input" placeholder="Enter new username" id="modal_new_username_input"/>
+            </div>
+            
+            <div class="ma-field-group">
+                <label class="ma-field-label">Current Password</label>
+                <input type="password" class="ma-modal-input" placeholder="Enter your current password" id="modal_username_pass_input"/>
+            </div>
+            
+            <div id="username-error-message" class="modal-error-message" style="display: none;"></div>
+            
+            <div class="ma-modal-actions">
+                <button class="btn-primary" id="modal_username_change_submit">Update Username</button>
+                <button class="btn-secondary" onclick="close_popup();">Cancel</button>
+            </div>
+        </div>
+        
+        <div id="username-success-container" style="display: none;">
+            <div class="modal-simple-success">
+                <h2 class="modal-simple-success-title">Username Updated</h2>
+                <p class="modal-simple-success-text">Your username has been successfully changed.</p>
+            </div>
+            <div class="ma-modal-actions">
+                <button class="btn-primary" onclick="close_popup();">Done</button>
+            </div>
+        </div>
+        
+        <a href="#0" class="cd-popup-close img-replace" onclick="close_popup(); return false;">Close</a>
+    </div>
+</div>
+
+<div class="cd-popup delete-account-modal" role="alert">
+    <div class="cd-popup-container" style="max-width: 480px;">
+        <h1>Delete Account</h1>
+        
+        <div id="delete-account-form-container">
+            <!-- Warning Section -->
+            <div class="account-delete-warning">
+                <p class="warning-main-text">This will permanently delete your Windscribe account and all associated data. But also...</p>
+                
+                <ul class="warning-list">
+                    <li>You will no longer be able to use free version of Windscribe in the future.</li>
+                    <li>FBI guy assigned to your case will smile and nod with pleasure (maybe too much pleasure).</li>
+                    <li>A beaver dam somewhere in Canada will get destroyed, leaving a family of beavers homeless.</li>
+                </ul>
+            </div>
+
+            
+            <div class="ma-field-group">
+                <label class="ma-field-label">Do you ever question your life choices?</label>
+                <div class="life-choices-radio-group">
+                    <label class="life-choice-option">
+                        <input type="radio" name="life_choices" value="yes" id="life_choice_yes">
+                        <span class="life-choice-label">Yes</span>
+                    </label>
+                    <label class="life-choice-option">
+                        <input type="radio" name="life_choices" value="no" id="life_choice_no">
+                        <span class="life-choice-label">No</span>
+                    </label>
+                </div>
+                <div id="life_choice_message" class="life-choice-message" style="display: none;"></div>
+            </div>
+            
+            <div class="ma-field-group">
+                <label class="ma-field-label">Current Password</label>
+                <input type="password" class="ma-modal-input" placeholder="Your Password" id="delete_account_password_input"/>
+            </div>
+            
+            <div class="ma-field-group">
+                <label class="ma-field-label">Why have you forsaken us?</label>
+                <textarea class="ma-modal-input" placeholder="Please tell us why you want to delete your Windscribe account, so we can improve our service." id="delete_account_reason_input" rows="4" style="resize: vertical; min-height: 80px;"></textarea>
+            </div>
+            
+            <div class="ma-field-group">
+                <div class="delete-checkboxes-group">
+                                        <label class="delete-checkbox-item">
+                        <input type="checkbox" id="delete_account_refund_warning">
+                        <span class="delete-checkbox-text">I understand refunds are not possible after deletion</span>
+                    </label>
+                                        <label class="delete-checkbox-item">
+                        <input type="checkbox" id="delete_account_beaver_hate">
+                        <span class="delete-checkbox-text">I hate beavers anyway</span>
+                    </label>
+                </div>
+            </div>
+            
+            <div id="delete-account-error-message" class="modal-error-message" style="display: none;"></div>
+            
+            <div class="ma-modal-actions">
+                <button class="btn-secondary" id="modal_delete_account_submit" disabled style="background: #dc3545 !important; color: #fff !important; border-color: #dc3545 !important;">Delete Account</button>
+                <button class="btn-secondary" onclick="close_popup();">Cancel</button>
+            </div>
+        </div>
+        
+        <div id="delete-account-success-container" style="display: none;">
+            <div class="modal-simple-success">
+                <h2 class="modal-simple-success-title">Account Deleted</h2>
+                <p class="modal-simple-success-text">See you back soon!</p>
+            </div>
+        </div>
+        
+        <a href="#0" class="cd-popup-close img-replace" onclick="close_popup(); return false;">Close</a>
+    </div>
+</div>
+
+
+<script defer src="https://garry2-fe.windscribe.com/client-gpt/garry.js"></script>
+
+<!-- Piwik -->
+<script type="text/javascript">
+    var _paq = _paq || [];
+    // tracker methods like "setCustomDimension" should be called before "trackPageView"
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+        var u="https://stats.windscribe.com/";
+        _paq.push(['setTrackerUrl', u+'piwik.php']);
+        _paq.push(['setSiteId', '3']);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+    })();
+</script>
+<!-- End Piwik Code -->
+    <div id="push" class=""></div>
+</div><!--wrapper-->
+</body>
+</html>

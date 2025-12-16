@@ -3,8 +3,13 @@ version: "3.8"
 services:
   ws-ephemeral:
     container_name: ws-ephemeral
-    image: dhruvinsh/ws-ephemeral:latest
+    image: ghcr.io/kriebb/ws-ephemeral:latest
     env_file: .env.example
     restart: unless-stopped
     volumes:
       - /home/user/appdata:/cookie
+    healthcheck:
+      test: ["CMD", "python3", "healthcheck.py"]
+      interval: 1h
+      timeout: 10s
+      retries: 3

@@ -1,0 +1,9 @@
+Request URL: https://windscribe.com/myaccount
+Request Method: GET
+Request Headers:
+Headers({'host': 'windscribe.com', 'accept': '*/*', 'accept-encoding': 'gzip, deflate', 'connection': 'keep-alive', 'origin': 'https://windscribe.com/', 'referer': 'https://windscribe.com/login', 'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36', 'content-type': 'application/x-www-form-urlencoded', 'cookie': 'i_can_has_cookie=1; ref=https://windscribe.com/; auth_redir=REDACTED; ws_session_auth_hash=185040174%3A1%3A1765892554%3Ab9a9a95852c304eb4c35ab8deeff803496dbd58a72%3A27c0235c6d5b2605bd1362867b4cf138f14ff1e970'})
+
+Response Status: 200
+Response URL: https://windscribe.com/myaccount
+Response Headers:
+Headers([('date', 'Tue, 16 Dec 2025 13:42:34 GMT'), ('content-type', 'text/html; charset=UTF-8'), ('transfer-encoding', 'chunked'), ('connection', 'keep-alive'), ('cache-control', 'no-store, no-cache, must-revalidate'), ('cache-control', 'post-check=0, pre-check=0'), ('vary', 'accept-encoding'), ('expires', 'Sat, 26 Jul 1997 05:00:00 GMT'), ('last-modified', 'Tue, 16 Dec 2025 13:42:34 GMT'), ('pragma', 'no-cache'), ('strict-transport-security', 'max-age=16000000; includeSubDomains; preload;'), ('x-frame-options', 'SAMEORIGIN'), ('cf-cache-status', 'DYNAMIC'), ('content-encoding', 'gzip'), ('server', 'cloudflare'), ('cf-ray', '9aee9ad1bf7d0e89-AMS')])
