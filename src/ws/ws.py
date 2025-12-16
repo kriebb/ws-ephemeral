@@ -88,6 +88,19 @@ class Windscribe:
                 f.write(f"Response URL: {resp.url}\n")
                 f.write(f"Response Headers:\n{resp.headers}\n")
                 
+            # Dump cookies
+            with open(dump_dir / f"{base_name}_cookies.txt", "w", encoding="utf-8") as f:
+                f.write("Current Client Cookies:\n")
+                if self.client.cookies:
+                    for cookie in self.client.cookies.jar:
+                        f.write(f"Name: {cookie.name}\n")
+                        f.write(f"Value: {cookie.value}\n")
+                        f.write(f"Domain: {cookie.domain}\n")
+                        f.write(f"Path: {cookie.path}\n")
+                        f.write("-" * 20 + "\n")
+                else:
+                    f.write("No cookies found.\n")
+                
             # Dump body
             with open(dump_dir / f"{base_name}_body.html", "wb") as f:
                 f.write(resp.content)
