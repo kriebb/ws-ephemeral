@@ -57,7 +57,8 @@ class Windscribe:
             cookie = default_cookie()
 
         self.client = httpx.Client(
-            headers=headers, cookies=cookie, timeout=config.REQUEST_TIMEOUT
+            headers=headers, cookies=cookie, timeout=config.REQUEST_TIMEOUT,
+            follow_redirects=True
         )
 
         # we will populate this later in the login call
@@ -139,14 +140,13 @@ class Windscribe:
         """
         resp = self.client.get(config.MYACT_URL)
 
-        # Check for redirect to login (session expired)
-        if resp.status_code in (301, 302, 303, 307, 308):
-            location = resp.headers.get("Location", "")
-            if "login" in location or "auth_required" in location:
-                if retry:
-                    self.logger.warning("Session expired (redirect detected), re-logging in...")
-                    self.login()
-                    return self.renew_csrf(retry=False)
+        # Check if we were redirected to login page (session expired)
+        # Since follow_redirects=True, we check the final URL.
+        if "login" in str(resp.url) or "auth_required" in str(resp.url):
+            if retry:
+                self.logger.warning("Session expired (landed on login page), re-logging in...")
+                self.login()
+                return self.renew_csrf(retry=False)
 
         # 1. Fallback for csrf_time
         csrf_time_match = re.search(config.RE_CSRF_TIME, resp.text)
