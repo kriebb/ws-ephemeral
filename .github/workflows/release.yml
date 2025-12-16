@@ -28,5 +28,5 @@ jobs:
           # you must use a Personal Access Token (PAT) instead of the default GITHUB_TOKEN.
           # Create a PAT with 'repo' scope, save it as a secret named GH_TOKEN_PAT,
           # and uncomment the line below:
-          # github_token: ${{ secrets.GH_TOKEN_PAT }}
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.GH_TOKEN_PAT }}
+          # github_token: ${{ secrets.GITHUB_TOKEN }}
