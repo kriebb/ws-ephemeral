@@ -21,6 +21,8 @@ jobs:
 
       - name: Python Semantic Release
         uses: python-semantic-release/python-semantic-release@master
+        env:
+          SEMANTIC_RELEASE_BUILD_COMMAND: "echo 'Skipping build for non-package'"
         with:
           # NOTE: To trigger the Docker build workflow on tag creation,
           # you must use a Personal Access Token (PAT) instead of the default GITHUB_TOKEN.
