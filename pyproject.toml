@@ -43,3 +43,8 @@ upload_to_pypi = false
 upload_to_release = true
 build_command = "echo 'Skipping build for non-package'"
 commit_message = "chore(release): {version} [skip ci]"
+
+[tool.semantic_release.changelog]
+changelog_file = "CHANGELOG.md"
+exclude_commit_patterns = []
+mode = "update"
