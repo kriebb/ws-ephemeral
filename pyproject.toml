@@ -3,6 +3,7 @@ name = "ws-ephemeral"
 version = "3.2.0"
 description = "request matching ephemeral port"
 authors = ["kriebb"]
+package-mode = false
 
 [tool.poetry.dependencies]
 python = "^3.11"
@@ -38,5 +39,5 @@ major_on_zero = false
 branch = "main"
 upload_to_pypi = false
 upload_to_release = true
-build_command = "pip install poetry && poetry build"
+build_command = "echo 'Skipping build for non-package'"
 commit_message = "chore(release): {version} [skip ci]"
