@@ -123,10 +123,13 @@ class Windscribe:
         return resp.json()
 
     @login_required
-    def renew_csrf(self) -> Csrf:
+    def renew_csrf(self, retry: bool = True) -> Csrf:
         """Renew CSRF token.
 
         After login, Windscribe issues a new CSRF token within JavaScript.
+
+        Args:
+            retry (bool): Whether to retry login if CSRF renewal fails.
 
         Returns:
             Csrf: The new CSRF token and time.
@@ -135,6 +138,15 @@ class Windscribe:
             ValueError: If CSRF time or token is not found.
         """
         resp = self.client.get(config.MYACT_URL)
+
+        # Check for redirect to login (session expired)
+        if resp.status_code in (301, 302, 303, 307, 308):
+            location = resp.headers.get("Location", "")
+            if "login" in location or "auth_required" in location:
+                if retry:
+                    self.logger.warning("Session expired (redirect detected), re-logging in...")
+                    self.login()
+                    return self.renew_csrf(retry=False)
 
         # 1. Fallback for csrf_time
         csrf_time_match = re.search(config.RE_CSRF_TIME, resp.text)
@@ -145,14 +157,22 @@ class Windscribe:
 
         # 2. Smart search for csrf_token (regex fallback to meta tag)
         csrf_token_match = re.search(config.RE_CSRF_TOKEN, resp.text)
+        meta_match = re.search(config.RE_META_CSRF_TOKEN, resp.text)
+        
         if csrf_token_match:
             csrf_token = csrf_token_match.group("ctoken")
+        elif meta_match:
+            csrf_token = meta_match.group("ctoken")
         else:
-            meta_match = re.search(config.RE_META_CSRF_TOKEN, resp.text)
-            if meta_match:
-                csrf_token = meta_match.group("ctoken")
+            # Token not found
+            if retry:
+                self.logger.warning("CSRF token not found, assuming session expired. Re-logging in...")
+                # Log debug info before retry just in case it's interesting
+                self.logger.debug("Response Status before retry: %s", resp.status_code)
+                self.login()
+                return self.renew_csrf(retry=False)
             else:
-                # 3. Debug logging on failure
+                # 3. Debug logging on failure (final attempt)
                 self.logger.debug("--- CSRF FAILURE DEBUG INFO ---")
                 self.logger.debug("Request URL: %s", resp.request.url)
                 self.logger.debug("Request Headers: %s", resp.request.headers)
