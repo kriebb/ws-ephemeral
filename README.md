@@ -16,9 +16,6 @@ Windscribe VPN and need to open the ports.
 
 ## Docker Setup
 
-> [!important]
-> NOTE: V1 is deprecated and should not be used.
-
 ### Registries
 
 Only ghcr.io is currently used for the Docker registry:
@@ -85,8 +82,8 @@ The container includes a built-in health check script (`healthcheck.py`) that ve
 | WS_USERNAME          | WS username                                                                      |
 | WS_PASSWORD          | WS password                                                                      |
 | WS_TOTP              | WS totp token for 2fa                                                            |
-| WS_DEBUG             | Enable Debug logging                                                             |
-| WS_COOKIE_PATH       | Persistent location for the cookie. (v3.x.x only)                                |
+| WS_DEBUG             | Enable Debug logging. If True, also dumps HTML/HTTP requests to cookie dir.      |
+| WS_COOKIE_PATH       | Persistent location for the cookie.                                              |
 | QBIT_USERNAME        | QBIT username                                                                    |
 | QBIT_PASSWORD        | QBIT password                                                                    |
 | QBIT_HOST            | QBIT web address like, https://qbit.xyz.com or http://192.168.1.10               |
@@ -103,9 +100,6 @@ The container includes a built-in health check script (`healthcheck.py`) that ve
 >
 > If Windscribe's website structure changes, leading to errors in token extraction, you can update the `RE_CSRF_TIME`, `RE_CSRF_TOKEN`, or `RE_META_CSRF_TOKEN` environment variables. To find the correct pattern, inspect the Windscribe login page HTML (e.g., by right-clicking and selecting "Inspect" or "View Page Source" in your browser) and search for elements related to "csrf_time" or "csrf-token". The `renew_csrf` function also logs the first 500 characters of the HTML response at debug level if a token isn't found, which can aid in debugging.
 
-> [!tip]
-> NOTE: for usage see [Docker Setup](#docker-setup) v2 setup guide.
-
 ## Unraid Setup
 
 Unraid template is now available under community application.
@@ -119,24 +113,6 @@ Located [here](./CHANGELOG.md)
 I assure you that nothing is being collected or logged. Your credentials are
 safe and set via environment variable only. Still If you have further questions
 or concerns, please open an issue here.
-
-## Roadmap
-
-- [x] Support 2FA, #19
-- [x] Robust CSRF handling
-  - [x] Auto-login on session expiry
-  - [x] Configurable Regex via Environment Variables
-  - [x] Fallback mechanisms for token extraction
-- [x] CI/CD Automation
-  - [x] Automated Semantic Release (versioning & changelog)
-  - [x] Docker build & push to GHCR (ghcr.io only)
-- [ ] Daemon mode and job mode
-  - [ ] Rest API (useful for cron/script job)
-  - [ ] Separate port renewal, qbittorrent update and private tracker logic
-  - [ ] Random job time for cron job #15
-- [ ] Allow to run custom script (for now Bash script only) #12
-- [ ] Support for deluge
-- [ ] Gluetun support [#2392](https://github.com/qdm12/gluetun/pull/2392)
 
 ## License
 
