@@ -110,6 +110,13 @@ or concerns, please open an issue here.
 ## Roadmap
 
 - [x] Support 2FA, #19
+- [x] Robust CSRF handling
+  - [x] Auto-login on session expiry
+  - [x] Configurable Regex via Environment Variables
+  - [x] Fallback mechanisms for token extraction
+- [x] CI/CD Automation
+  - [x] Automated Semantic Release (versioning & changelog)
+  - [x] Docker build & push to GHCR (ghcr.io only)
 - [ ] Daemon mode and job mode
   - [ ] Rest API (useful for cron/script job)
   - [ ] Separate port renewal, qbittorrent update and private tracker logic
