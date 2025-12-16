@@ -50,6 +50,8 @@ PASSWORD_ID: str = "password"
 RE_CSRF_TIME: str = os.getenv("RE_CSRF_TIME", r"csrf_time = (?P<ctime>\d+)")
 RE_CSRF_TOKEN: str = os.getenv("RE_CSRF_TOKEN", r"csrf_token = \'(?P<ctoken>\w+)\'")
 RE_META_CSRF_TOKEN: str = os.getenv("RE_META_CSRF_TOKEN", r'<meta name="csrf-token" content="(?P<ctoken>[^"]+)"')
+RE_LOGIN_SALT: str = os.getenv("RE_LOGIN_SALT", r"encode\(token \+ ['\"]([^'\"]+)['\"]\)")
+DEFAULT_LOGIN_SALT: str = os.getenv("DEFAULT_LOGIN_SALT", "my_mom_told_me_this_is_peak_engineering")
 
 
 # fmt: off

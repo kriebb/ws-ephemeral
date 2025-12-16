@@ -234,6 +234,22 @@ class Windscribe:
         self.logger.debug("csrf renewed successfully.")
         return new_csrf
 
+    def _get_salt(self) -> str:
+        """Fetch the login page and extract the dynamic salt."""
+        try:
+            resp = self.client.get(config.LOGIN_URL)
+            match = re.search(config.RE_LOGIN_SALT, resp.text)
+            if match:
+                salt = match.group(1)
+                self.logger.debug("Extracted dynamic salt: %s", salt)
+                return salt
+            else:
+                self.logger.warning("Could not extract salt, using default.")
+                return config.DEFAULT_LOGIN_SALT
+        except Exception as e:
+            self.logger.error("Failed to fetch salt: %s", e)
+            return config.DEFAULT_LOGIN_SALT
+
     def login(self) -> None:
         """Login to the Windscribe webpage using the 2-stage auth flow.
 
@@ -241,6 +257,9 @@ class Windscribe:
         Updates the CSRF token and saves the session cookies for future use.
         """
         self.logger.debug("Starting 2-stage login flow...")
+        
+        # Pre-Stage: Get Salt
+        salt = self._get_salt()
         
         # Stage 1: Get Auth Token
         # -----------------------
@@ -285,7 +304,6 @@ class Windscribe:
         # -------------------------------
         # logic reversed from: submitLoginWithToken in login page source
         
-        salt = "my_mom_told_me_this_is_peak_engineering"
         payload_str = token + salt
         calculated_token_sig = hashlib.sha256(payload_str.encode("utf-8")).hexdigest()
         
