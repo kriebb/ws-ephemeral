@@ -153,6 +153,9 @@ class Windscribe:
                 csrf_token = meta_match.group("ctoken")
             else:
                 # 3. Debug logging on failure
+                self.logger.debug(
+                    "Response Status: %s, Headers: %s", resp.status_code, resp.headers
+                )
                 self.logger.debug("HTML content dump (first 500 chars): %s", resp.text[:500])
                 raise ValueError("Can not work further, csrf_token not found, exited.")
 
